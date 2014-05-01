@@ -1,11 +1,6 @@
 #!/usr/bin/python
-import sys
-import time
 import re
-import os
 import math
-import json
-from pprint import pprint
 
 round0 = re.compile('\'')
 
@@ -253,73 +248,71 @@ scorelist = {
 
 }
 
+def analyze(content):
+  wordcount = 0
+  score=0
+  lastword=''
+  lastlastword=''
+  analysis=[]
 
-content = sys.stdin.read()
-
-wordcount = 0
-score=0
-lastword=''
-lastlastword=''
-analysis=[]
-
-words = content.lower()
-words = re.sub(round0,'',words)
-words = re.sub(round0a,' ',words)
-words = re.sub(round1,' ',words)
+  words = content.lower()
+  words = re.sub(round0,'',words)
+  words = re.sub(round0a,' ',words)
+  words = re.sub(round1,' ',words)
 # articles -- this makes the ngrams better ... because of adjacency we run it twice
-words = re.sub(round2,' ',words)
-words = re.sub(round2a,' ',words)
-words = re.sub(round3,' ',words).split()
+  words = re.sub(round2,' ',words)
+  words = re.sub(round2a,' ',words)
+  words = re.sub(round3,' ',words).split()
 
-for i in words: 
+  for i in words: 
 
 # Here's where we do the word reduction
-  if i in wordmap:
-    i = wordmap[i]  
+    if i in wordmap:
+      i = wordmap[i]  
 
-  if i not in empty:
-    wordcount += 1
+    if i not in empty:
+      wordcount += 1
 
-  twogram = lastword + ' ' + i
-  threegram = lastlastword + ' ' + lastword + ' ' + i
+    twogram = lastword + ' ' + i
+    threegram = lastlastword + ' ' + lastword + ' ' + i
 
-  lastlastword = lastword
-  lastword = i
+    lastlastword = lastword
+    lastword = i
 
-  if threegram in scorelist:
-    point = scorelist[threegram]
-    analysis.append([ threegram, point ])
-    score += (point * 3)
+    if threegram in scorelist:
+      point = scorelist[threegram]
+      analysis.append([ threegram, point ])
+      score += (point * 3)
 
 # If the 2-gram was found
 # we add that * 2
-  elif twogram in scorelist:
-    point = scorelist[twogram]
-    analysis.append([ twogram, point ])
-    score += (point * 2)
+    elif twogram in scorelist:
+      point = scorelist[twogram]
+      analysis.append([ twogram, point ])
+      score += (point * 2)
 
-  elif i in scorelist:
-    point = scorelist[i]
-    analysis.append([ i, point ])
-    score += point
+    elif i in scorelist:
+      point = scorelist[i]
+      analysis.append([ i, point ])
+      score += point
 
 # now we'll do the score divided by the length of words 
-score = (score / (wordcount))
+  score = (score / (wordcount))
 
 # take our multiplier
-multiplier = 1
-if score < 0:
-  multiplier = -1
-  score *= -1
+  multiplier = 1
+  if score < 0:
+    multiplier = -1
+    score *= -1
 
 # do a double square-root for sciency reasons
-score = math.sqrt(math.sqrt(score))
+  score = math.sqrt(math.sqrt(score))
 
 # and put our multiplier back in
-score *= multiplier
+  score *= multiplier
 
 # now we normalize it
-score += 1
-score /= 2
+  score += 1
+  score /= 2
 
-print json.dumps({ 'score': score, 'analysis': analysis, 'norm': wordcount })
+  return ({ 'score': score, 'analysis': analysis, 'norm': wordcount })
