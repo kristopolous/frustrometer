@@ -217,6 +217,7 @@ scorelist = {
   'mo': 0.3,
 
 # defensive
+  'didnt': 0.15,
   'just trying': 0.3,
   'just thought': 0.3,
 

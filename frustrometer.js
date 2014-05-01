@@ -67,9 +67,9 @@
   function setLevel(rating, obj) {
     obj.title.style.display = (rating > 0.05) ? 'block' : 'none';
     obj.thermo.style.display = (rating > showabove) ? 'block' : 'none';
-    obj.temp.style.width = ( 100 - rating ) + "%";
 
     rating *= 100;
+    obj.temp.style.width = ( 100 - rating ) + "%";
 
     for(var level in words) {
       if (rating <= level) {
