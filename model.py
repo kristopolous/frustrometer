@@ -17,7 +17,7 @@ round2a = re.compile('(ly) ')
 round3 = re.compile('\s+')
 
 # this set of words shouldn't count in our idf calculations
-empty = set(['this', 'how', 'did', 'i', 'in', 'you', 'ok', 'to'])
+empty = set(['this', 'its', 'how', 'did', 'i', 'in', 'you', 'ok', 'to'])
 
 # The words on the left get replaced with the ones on the right.
 wordmap = {
@@ -31,6 +31,7 @@ wordmap = {
 # profanity
   'shit' : 'fuck',
   'fucking': 'fuck',
+  'motherfucker': 'fuck',
   'fucker': 'fuck',
 
 # insults
@@ -87,6 +88,9 @@ scorelist = {
   'kiss i': 0.95,
   'lick i': 0.95,
   'in ass': 0.95,
+
+# Sarcastometer!
+  'oh look': 0.3,
 
 # Frustration
   'alright': 0.2,
@@ -195,6 +199,8 @@ scorelist = {
   'rtfm': 1.0,
   'stfu': 1.0,
   'rtm': 0.8,
+  'omg': 0.7,
+  'omfg': 0.9,
 
 # versus MINE, also somewhat bad
   'i error': 0.3,
@@ -276,6 +282,10 @@ scorelist = {
   'delightful': -0.4,
 
 # manners!
+  'sir': -0.2,
+  'madam': -0.2,
+  'dear': -0.3,
+  'dearest': -0.3,
   'enjoy': -0.2,
   'enjoyed': -0.2,
   'id like': -0.2,
@@ -306,6 +316,7 @@ def analyze(content):
   words = re.sub(round0,'',words)
   words = re.sub(round0a,' ',words)
   words = re.sub(round1,' ',words)
+
 # articles -- this makes the ngrams better ... because of adjacency we run it twice
   words = re.sub(round2,' ',words)
   words = re.sub(round2a,' ',words)
@@ -347,7 +358,7 @@ def analyze(content):
 # we will take a small positive read on every word we
 # see
       if i not in empty:
-        score += -0.09 
+        score += -0.07 
 
 # now we'll do the score divided by the length of words 
   score = (float(score) / float(wordcount))
