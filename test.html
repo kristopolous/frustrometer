@@ -141,7 +141,7 @@ This technology tries to determine how appropriate your messages are in a busine
 
   ival = setInterval(function() {
     var d = document.getElementById('content').value;
-    if(d != content && d.substr(-1).match(/[\ !?\.]/)) {
+    if(d != content && (d.substr(-1).match(/[\ !?\.]/) || d.length == 0)) {
       content = d;
       update(content); 
     }
