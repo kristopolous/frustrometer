@@ -17,7 +17,7 @@ round2a = re.compile('(ly) ')
 round3 = re.compile('\s+')
 
 # this set of words shouldn't count in our idf calculations
-empty = set(['i', 'in', 'you', 'ok', 'to'])
+empty = set(['this', 'how', 'did', 'i', 'in', 'you', 'ok', 'to'])
 
 # The words on the left get replaced with the ones on the right.
 wordmap = {
@@ -31,13 +31,23 @@ wordmap = {
 # profanity
   'shit' : 'fuck',
   'fucking': 'fuck',
+  'fucker': 'fuck',
 
 # insults
-  'moron': 'idiot',
-  'stupid': 'idiot',
-  'fucktard': 'idiot',
-  'shithead': 'idiot',
+  'asshole': 'idiot',
+  'nigger': 'idiot',
+  'chink': 'idiot',
+  'bitch': 'idiot',
+  'cocksucker': 'idiot',
+  'cunt': 'idiot',
   'dipshit': 'idiot',
+  'dumbfuck': 'idiot',
+  'fucktard': 'idiot',
+  'moron': 'idiot',
+  'retarded': 'idiot',
+  'retard': 'idiot',
+  'shithead': 'idiot',
+  'stupid': 'idiot',
 
 # For our purposes, these adjectives will be reduced to just
 # a negative "bad"
@@ -72,6 +82,11 @@ scorelist = {
 
   'crap': 0.9,
   'bad': 0.4,
+# really bad idea here.
+  'suck i': 0.95,
+  'kiss i': 0.95,
+  'lick i': 0.95,
+  'in ass': 0.95,
 
 # Frustration
   'alright': 0.2,
@@ -83,6 +98,9 @@ scorelist = {
   'pain': 0.2,
   'painful': 0.3,
   'putting up with': 0.5,
+  'real pain': 0.7,
+  'im so tired': 0.4,
+  'so tired of': 0.4,
   'utter': 0.4,
   'utter ridiculous': 0.6,
   'final': 0.3,
@@ -94,20 +112,30 @@ scorelist = {
   'stop bugging you': 0.4,
   'stop bugging me': 0.9,
   'so indecisive': 0.7,
+  'to hell': 0.5,
   'i mean': 0.15,
   'we went over': 0.2,
   'way i can': 0.3,
   'why': 0.2,
   'dont care': 0.2,
+  'dont want': 0.3,
+  'dont want to': 0.3,
   'i sick': 0.2,
   'move on': 0.3,
 # probably love *of* god
   'love god': 0.4,
 # accusatory
   'do you': 0.2,
+  'you fire': 0.5,
+  'i fire': 0.5,
 
 # This is the blanket term for all insults
   'idiot': 0.9,
+
+# Fairly insensitive
+  'oriental': 0.5,
+# maybe, maybe not --- depends on who is saying it
+  'jews': 0.3,
 
 # Really bad
   'you idiot': 1,
@@ -165,6 +193,7 @@ scorelist = {
 # big no no talking to clients
 # even if it's i should rtfm
   'rtfm': 1.0,
+  'stfu': 1.0,
   'rtm': 0.8,
 
 # versus MINE, also somewhat bad
@@ -200,6 +229,16 @@ scorelist = {
   'ill do': -0.15,
   'finish': -0.2,
 
+# vapid positive things
+  'cute': -0.15,
+  'adorable': -0.2,
+  'beautiful': -0.25,
+  'charming': -0.2,
+
+# careful careful ... that's pretty sarcastic
+  'would be fantastic': 0.7,
+  'a fantastic job': -0.1,
+
 # or at least you intend to
   'will arrange': -0.2,
   'will prepare': -0.15,
@@ -223,6 +262,7 @@ scorelist = {
 # kissing ass
   'honored': -0.5,
   'pleasure': -0.5,
+  'pleasure to meet': -0.3,
   'your time': -0.2,
   'i value': -0.3,
   'great': -0.05,
@@ -244,11 +284,18 @@ scorelist = {
   'be able': -0.15,
   'thanks': -0.2,
   'thank you': -0.2,
-  'please': -0.2
+  'hi': -0.3,
+  'hello': -0.3,
+  'sincerely': -0.3,
+  'please': -0.2,
+  'feel free': -0.2,
 
 }
 
 def analyze(content):
+  if len(content) == 0:
+    return ({ 'score': 0, 'analysis': [], 'norm': 0 })
+
   wordcount = 0
   score=0
   lastword=''
@@ -295,6 +342,12 @@ def analyze(content):
       point = scorelist[i]
       analysis.append([ i, point ])
       score += point
+
+    else:
+# we will take a small positive read on every word we
+# see
+      if i not in empty:
+        score += -0.09 
 
 # now we'll do the score divided by the length of words 
   score = (float(score) / float(wordcount))

@@ -55,6 +55,7 @@
 <script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <script>
   var words = {
+    1: "Not enough information... :-(",
     2: "Lick those boots!",
     4: "You appear to be groveling.",
     6: "Walking on eggshells?",
@@ -130,10 +131,10 @@
 
   ival = setInterval(function() {
     var d = document.getElementById('content').value;
-    if(d != content) {
+    if(d != content && d.substr(-1).match(/[\ !?\.]/)) {
       content = d;
       update(content); 
     }
-  }, 2000);
+  }, 200);
 
 </script>
