@@ -14,6 +14,7 @@
 
     return obj;
   }
+
   var words = {
     1: "Not enough information... :-(",
     2: "Lick those boots!",
@@ -28,8 +29,8 @@
     20: "Such diplomatic prose!",
     23: "Nothing wrong with this.",
     26: "Tactful like a chess game.",
-    29: "You're good at chess, right?",
-    32: "Assertive and confident.",
+    29: "Not too worried yet...",
+    32: "Assertive and confident?!",
     35: "Forward and direct.",
     38: "What's your goal?",
     40: "Blunt. Is that what you want?",
@@ -63,18 +64,22 @@
     96: "The bridges are burning.",
     98: "1, 2, 3, 4 I declare War!",
     100: "Pack up your things and leave the building."
-  };
+  }, 
+  // only show above this amount
+  showabove = 0.30;
 
   function setLevel(rating, obj) {
-    if (rating < 1) { 
-      rating *= 100;
-    } 
+    obj.title.style.display = (rating > 0.05) ? 'block' : 'none';
+    obj.thermo.style.display = (rating > showabove) ? 'block' : 'none';
+
+    rating *= 100;
     for(var level in words) {
       if (rating <= level) {
         obj.title.innerHTML = words[level];
         break;
       }
     }
+
 
     obj.temp.style.width = ( 100 - rating ) + "%";
   }
@@ -101,7 +106,7 @@
 
   }
 
-  function wrap(what) {
+  function wrap(ta) {
     /*
     <div class='frustrometer'>
       <textarea></textarea>
@@ -117,22 +122,27 @@
       wrapper = d({'class': 'frustrometer'}),
         // textarea
         casing = d({"class": "thermometer-casing"}),
-          thermometer = d({"class": "thermometer"}),
+          thermo = d({"class": "thermometer"}),
             temp = d({"class": "temp"}),
           title = d({"class": "thermometer-title"});
 
-    thermometer.appendChild(temp);
-    casing.appendChild(thermometer);
+    thermo.appendChild(temp);
+    casing.appendChild(thermo);
     casing.appendChild(title);
 
+    self.ta = ta;
+    thermo.style.width = ta.offsetWidth;
+
     // wrap this 
-    what.parentNode.replaceChild(wrapper, what);
-    what = wrapper.appendChild(what);
+    ta.parentNode.replaceChild(wrapper, ta);
+    ta = wrapper.appendChild(ta);
     wrapper.appendChild(casing);
+    thermo.style.display = 'none';
 
     return {
+      thermo: thermo,
       temp: temp,
-      ta: what,
+      ta: ta,
       title: title
     } 
   }
@@ -142,6 +152,8 @@
 
     setInterval(function() {
       var text = obj.ta.value;
+
+      obj.thermo.style.width = obj.ta.offsetWidth;
 
       if(text != content && (text.substr(-1).match(/[\ !?\.]/) || text.length == 0)) {
         content = text;
