@@ -41,6 +41,10 @@ wordmap = {
   'bitch': 'idiot',
   'cocksucker': 'idiot',
   'cunt': 'idiot',
+  'fag': 'idiot',
+  'faggot': 'idiot',
+  'whore': 'idiot',
+  'slut': 'idiot',
   'dipshit': 'idiot',
   'dumbfuck': 'idiot',
   'fucktard': 'idiot',
@@ -215,6 +219,9 @@ scorelist = {
 
 # versus MINE, also somewhat bad
   'i error': 0.3,
+  'not mine': 0.2,
+  'not i': 0.2,
+  'not i problem': 0.4,
 
   'clear': 0.1,
 
