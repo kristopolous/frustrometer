@@ -82,6 +82,7 @@ scorelist = {
   'fuck': 1,
 
   'crap': 0.9,
+  'dumb': 0.5,
   'bad': 0.4,
 # really bad idea here.
   'suck i': 0.95,
