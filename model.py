@@ -139,6 +139,10 @@ scorelist = {
   'you fire': 0.5,
   'i fire': 0.5,
 
+# Defeatist
+  'impossible': 0.2,
+  'not possible': 0.2,
+
 # This is the blanket term for all insults
   'idiot': 0.9,
 
