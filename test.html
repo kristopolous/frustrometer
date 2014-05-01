@@ -40,7 +40,7 @@
 }
 </style>
 <div class='frustrometer'>
-  <textarea></textarea>
+  <textarea id='content'></textarea>
   <div class='thermometer-casing'>
     <div class='thermometer'>
       <div class='temp' id='temp'></div>
@@ -52,6 +52,7 @@
   </div>
 </div>
 
+<script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
 <script>
   var words = {
     2: "Lick those boots!",
@@ -102,10 +103,13 @@
     98: "1, 2, 3, 4 I declare War!",
     100: "Pack up your things and leave the building."
   };
-  var rating = 0, ival;
+  var rating = 0, ival, content;
 
-  ival = setInterval(function() {
-    rating+= Math.random() / 5;
+  function setLevel(rating) {
+    if (rating < 1) { 
+      rating *= 100;
+    }
+
     document.getElementById('debug').innerHTML = rating.toFixed(3);
     for(var level in words) {
       if (rating <= level) {
@@ -114,9 +118,22 @@
       }
     }
     document.getElementById('temp').style.width = ( 100 - rating ) + "%";
-    if(rating > 100) {
-      rating = 0;
+  }
+
+  function update(content) {
+    console.log(content);
+    $.post("//localhost/cgi", content, function(res) {
+      console.log(res);
+      setLevel(res.score);
+    }, 'json');
+  }
+
+  ival = setInterval(function() {
+    var d = document.getElementById('content').value;
+    if(d != content) {
+      content = d;
+      update(content); 
     }
-  }, 70);
+  }, 2000);
 
 </script>

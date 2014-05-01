@@ -297,7 +297,7 @@ def analyze(content):
       score += point
 
 # now we'll do the score divided by the length of words 
-  score = (score / (wordcount))
+  score = (float(score) / float(wordcount))
 
 # take our multiplier
   multiplier = 1
@@ -312,7 +312,11 @@ def analyze(content):
   score *= multiplier
 
 # now we normalize it
-  score += 1
-  score /= 2
+  score += 1.0
+  score /= 2.0
+
+# no words at all
+  if len(analysis) == 0:
+    score = 0
 
   return ({ 'score': score, 'analysis': analysis, 'norm': wordcount })
