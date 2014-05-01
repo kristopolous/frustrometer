@@ -52,7 +52,6 @@ wordmap = {
   'retarded': 'idiot',
   'retard': 'idiot',
   'shithead': 'idiot',
-  'stupid': 'idiot',
 
 # For our purposes, these adjectives will be reduced to just
 # a negative "bad"
@@ -60,6 +59,11 @@ wordmap = {
   'incompetent': 'bad',
   'horrible': 'bad',
   'terrible': 'bad',
+
+# Should probably avoid these things too
+  'crazy': 'bad',
+  'insane': 'bad',
+  'nuts': 'bad',
 
 # Blame game
   'fault': 'error',
@@ -88,17 +92,37 @@ scorelist = {
   'crap': 0.9,
   'dumb': 0.5,
   'bad': 0.4,
+
 # really bad idea here.
   'suck i': 0.95,
   'kiss i': 0.95,
   'lick i': 0.95,
   'in ass': 0.95,
+  'you suck': 0.8,
   'you ugly': 0.95,
   'you fat': 0.95,
   'you idiot': 0.95,
 
+# racist vs. racial
+# Saying "he is black" is ok. 
+# But the plural "black(s)" is almost 
+# always pretty inflammatory
+  'blacks': 1.0,
+  'asians': 1.0,
+  'whites': 1.0,
+# Not as bad, but still pretty racy.
+  'black people': 0.8,
+  'asian people': 0.8,
+  'white people': 0.8,
+# Nationalities and religion identifiers
+# are more ambiguous. Saying "Most muslims believe ..."
+# is perfectly acceptable in some contexts.  
+# "Most blacks believe ..." is totally not.
+
 # Sarcastometer!
   'oh look': 0.3,
+  'duh': 0.6,
+  'bingo': 0.4,
 
 # Frustration
   'alright': 0.2,
@@ -132,6 +156,7 @@ scorelist = {
   'we went over': 0.2,
   'way i can': 0.3,
   'why': 0.2,
+  'so late': 0.3,
   'dont care': 0.2,
   'dont want': 0.3,
   'dont want to': 0.3,
@@ -255,6 +280,7 @@ scorelist = {
 
 # vapid positive things
   'cute': -0.15,
+  'lovely': -0.2,
   'adorable': -0.3,
   'you good': -0.4,
   'you great': -0.4,
