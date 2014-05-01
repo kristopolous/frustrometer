@@ -36,6 +36,7 @@ wordmap = {
 
 # insults
   'asshole': 'idiot',
+  'dickhead': 'idiot',
   'nigger': 'idiot',
   'chink': 'idiot',
   'bitch': 'idiot',
@@ -155,13 +156,23 @@ scorelist = {
   'i mean': 0.15,
   'we went over': 0.2,
   'way i can': 0.3,
-  'why': 0.2,
   'so late': 0.3,
   'dont care': 0.2,
   'dont want': 0.3,
   'dont want to': 0.3,
   'i sick': 0.2,
   'move on': 0.3,
+
+# why is generally pretty bad.  Try
+# to put it in a few sentances.  It 
+# usually suggests an error or at 
+# best states a challenge
+#
+# A way around "why" could be something like
+# "Could you help me better understand " ... how or "what"
+# or "Your reasoning" ... etc.  It's more gentle and 
+# specific.
+  'why': 0.2,
 # probably love *of* god
   'love god': 0.4,
 # accusatory
