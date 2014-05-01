@@ -237,9 +237,11 @@ scorelist = {
 
 # vapid positive things
   'cute': -0.15,
-  'adorable': -0.2,
+  'adorable': -0.3,
+  'you good': -0.4,
+  'you great': -0.4,
   'beautiful': -0.25,
-  'charming': -0.2,
+  'charming': -0.3,
 
 # careful careful ... that's pretty sarcastic
   'would be fantastic': 0.7,
@@ -269,7 +271,7 @@ scorelist = {
   'honored': -0.5,
   'pleasure': -0.5,
   'pleasure to meet': -0.3,
-  'your time': -0.2,
+  'you time': -0.2,
   'i value': -0.3,
   'great': -0.05,
   'splendid': -0.1,
@@ -290,7 +292,7 @@ scorelist = {
   'dearest': -0.3,
   'enjoy': -0.2,
   'enjoyed': -0.2,
-  'id like': -0.2,
+  'id like': -0.3,
   'hope to hear': -0.2,
   'from you soon': -0.2,
   'be able': -0.15,
