@@ -123,7 +123,7 @@
 
   function update(content) {
     console.log(content);
-    $.post("//localhost/cgi", content, function(res) {
+    $.post("//" + document.location.hostname + "/cgi", content, function(res) {
       console.log(res);
       setLevel(res.score);
     }, 'json');
