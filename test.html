@@ -12,6 +12,9 @@
   border-radius: 10px;
   border:2px solid rgba(30,30,30, 0.9);
 }
+.thermometer-casing {
+  width: 100%;
+}
 .thermometer-title {
   display:inline-block;
   color: #333;
@@ -27,17 +30,10 @@
   width: 100%;
   box-shadow: 0 0 15px 15px rgba(255,255,255,0.75);
 }
-.frustrometer, textarea {
+
+textarea {
   width: 550px;
   height: 300px;
-}
-#debug {
-  float:right;
-  display:inline-block;
-  text-align:center;
-  background: #333;
-  padding: 2px 5px;
-  color: white;
 }
 </style>
 <h1>frustrometer</h1>
@@ -45,106 +41,7 @@
 This technology tries to determine how appropriate your messages are in a business setting.</p>
 
 <p>Test it by typing in prose below and watch the frustrometer go! <a href="https://github.com/kristopolous/frustrometer">Source code here</a>.</p>
-<div class='frustrometer'>
-  <textarea id='content'></textarea>
-  <div class='thermometer-casing'>
-    <div class='thermometer'>
-      <div class='temp' id='temp'></div>
-    </div>
-      <tt id="debug">.</tt>
-      <div class='thermometer-title' id='ttl'>
-        Waiting...
-      </div>
-  </div>
-</div>
+<textarea id='content1'></textarea>
+<textarea id='content2'></textarea>
 
-<script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
-<script>
-  var words = {
-    1: "Not enough information... :-(",
-    2: "Lick those boots!",
-    4: "You appear to be groveling.",
-    6: "Walking on eggshells?",
-    8: "Apologizing for something?",
-    10: "Is this a job interview?",
-    12: "Just delightful.",
-    14: "Quite polite.",
-    16: "So charming!",
-    18: "You're doing fine.",
-    20: "Such diplomatic prose!",
-    23: "Nothing wrong with this.",
-    26: "Tactful like a chess game.",
-    29: "You're good at chess, right?",
-    32: "Assertive and confident.",
-    35: "Forward and direct.",
-    38: "What's your goal?",
-    40: "Blunt. Is that what you want?",
-    42: "What's your desired impact?",
-    44: "Editing is a great idea.",
-    46: "Having a bad day?",
-    48: "Different wording?",
-    50: "Starting to get saucy?",
-    52: "Being a bit snippy?",
-    54: "Approach this from a different angle.",
-    56: "Rather imposing.",
-    58: "Would YOU like to receive this?",
-    60: "A bit too aggressive.",
-    62: "Really, what will you gain from posting this?",
-    64: "Step back for a few minutes.",
-    66: "Maybe you shouldn't say anything?",
-    68: "Read it outloud to yourself.",
-    70: "Very contemptuous. Breath in...",
-    72: "Perhaps finish this tomorrow?",
-    74: "That's flippant and combative!",
-    76: "People Will read this you know, right?",
-    78: "Danger Will Robinson!",
-    80: "You are crossing the Rubicon.",
-    82: "What Audacious Language!", 
-    84: "Careful careful...",
-    86: "You may be offending many people here.",
-    88: "These are fighting words.",
-    90: "You're starting fires here.",
-    92: "This is a bad idea.",
-    94: "You can't be serious...",
-    96: "The bridges are burning.",
-    98: "1, 2, 3, 4 I declare War!",
-    100: "Pack up your things and leave the building."
-  };
-  var rating = 0, ival, content;
-
-  function setLevel(rating) {
-    if (rating < 1) { 
-      rating *= 100;
-    }
-
-    document.getElementById('debug').innerHTML = rating.toFixed(3);
-    for(var level in words) {
-      if (rating <= level) {
-        document.getElementById('ttl').innerHTML = words[level];
-        break;
-      }
-    }
-    document.getElementById('temp').style.width = ( 100 - rating ) + "%";
-  }
-
-  function update(content) {
-    if(update.lock != true) {
-      update.lock = true;
-      console.log(content);
-      $.post("//" + document.location.hostname + "/cgi", content, function(res) {
-        console.log(res);
-        setLevel(res.score);
-        update.lock = false;
-      }, 'json');
-    }
-  }
-
-  ival = setInterval(function() {
-    var d = document.getElementById('content').value;
-    if(d != content && (d.substr(-1).match(/[\ !?\.]/) || d.length == 0)) {
-      content = d;
-      update(content); 
-    }
-  }, 200);
-
-</script>
+<script src="frustrometer.js"></script>
