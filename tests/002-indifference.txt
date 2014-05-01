@@ -1,0 +1,5 @@
+Alright, whatever you'd like to do here.  I really don't care what we're doing
+either way.  If you'd rather implement it your way, then that's fine. I just
+need a decision either way.  You need to give me some kind of direction for
+moving forward on this thing.  I'm sick of reimplementing and reverting issues
+on your behalf because you are so indecisive on simple things.
