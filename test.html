@@ -28,7 +28,8 @@
   box-shadow: 0 0 15px 15px rgba(255,255,255,0.75);
 }
 .frustrometer, textarea {
-  width: 350px;
+  width: 550px;
+  height: 300px;
 }
 #debug {
   float:right;
@@ -122,11 +123,15 @@
   }
 
   function update(content) {
-    console.log(content);
-    $.post("//" + document.location.hostname + "/cgi", content, function(res) {
-      console.log(res);
-      setLevel(res.score);
-    }, 'json');
+    if(update.lock != true) {
+      update.lock = true;
+      console.log(content);
+      $.post("//" + document.location.hostname + "/cgi", content, function(res) {
+        console.log(res);
+        setLevel(res.score);
+        update.lock = false;
+      }, 'json');
+    }
   }
 
   ival = setInterval(function() {
