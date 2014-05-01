@@ -363,6 +363,7 @@ def analyze(content):
         score += -0.07 
 
 # now we'll do the score divided by the length of words 
+  wordcount = max([wordcount, 1])
   score = (float(score) / float(wordcount))
 
 # take our multiplier
