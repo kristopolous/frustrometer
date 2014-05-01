@@ -1,15 +1,11 @@
 (function(){  
 
+  // a Very very cheap dom builder.
   function d(attrib, type) {
-    type = type || 'div';
-    var obj = document.createElement(type);
+    var obj = document.createElement(type || 'div'), key;
 
-    for(var key in attrib) {
-      if(key == "innerHTML") {
-        obj[key] = attrib[key];
-      } else {
-        obj.setAttribute(key, attrib[key]);
-      }
+    for(key in attrib) {
+      obj.setAttribute(key, attrib[key]);
     }
 
     return obj;
@@ -71,17 +67,16 @@
   function setLevel(rating, obj) {
     obj.title.style.display = (rating > 0.05) ? 'block' : 'none';
     obj.thermo.style.display = (rating > showabove) ? 'block' : 'none';
+    obj.temp.style.width = ( 100 - rating ) + "%";
 
     rating *= 100;
+
     for(var level in words) {
       if (rating <= level) {
         obj.title.innerHTML = words[level];
-        break;
+        return;
       }
     }
-
-
-    obj.temp.style.width = ( 100 - rating ) + "%";
   }
 
   function update(content, obj) {
@@ -89,7 +84,6 @@
 
     if(update.lock != true) {
       update.lock = true;
-      console.log(content);
 
       request = new XMLHttpRequest();
       request.open('POST', "//" + document.location.hostname + "/cgi", true);
@@ -129,8 +123,6 @@
     thermo.appendChild(temp);
     casing.appendChild(thermo);
     casing.appendChild(title);
-
-    self.ta = ta;
     thermo.style.width = ta.offsetWidth;
 
     // wrap this 
@@ -163,11 +155,9 @@
   }
 
   window.onload = function() {
-    var 
-      taList = document.getElementsByTagName('textarea'), 
-      ix;
+    var taList = document.getElementsByTagName('textarea');
 
-    for(ix = 0; ix < taList.length; ix++) {
+    for(var ix = 0; ix < taList.length; ix++) {
       listenTo(taList[ix]); 
     }
   }
