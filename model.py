@@ -284,6 +284,8 @@ scorelist = {
 # manners!
   'sir': -0.2,
   'madam': -0.2,
+  'was so nice': -0.2,
+  'nice to see': -0.2,
   'dear': -0.3,
   'dearest': -0.3,
   'enjoy': -0.2,
