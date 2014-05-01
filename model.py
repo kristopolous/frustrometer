@@ -103,6 +103,8 @@ scorelist = {
   'painful': 0.3,
   'putting up with': 0.5,
   'real pain': 0.7,
+  'was waiting': 0.6,
+  'am waiting': 0.6,
   'im so tired': 0.4,
   'so tired of': 0.4,
   'utter': 0.4,
