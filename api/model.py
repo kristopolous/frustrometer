@@ -363,13 +363,14 @@ scorelist = {
 
 def analyze(content):
   if len(content) == 0:
-    return ({ 'score': 0, 'analysis': [], 'norm': 0 })
+    return ({ 'score': 0, 'norm': 0 })
 
+  show = False
   wordcount = 0
-  score=0
-  lastword=''
-  lastlastword=''
-  analysis=[]
+  score = 0
+  lastword = ''
+  lastlastword = ''
+  analysis = []
 
   words = content.lower()
   words = re.sub(round0,'',words)
@@ -398,19 +399,22 @@ def analyze(content):
 
     if threegram in scorelist:
       point = scorelist[threegram]
-      analysis.append([ threegram, point ])
+      show = True
+#      analysis.append([ threegram, point ])
       score += (point * 3)
 
 # If the 2-gram was found
 # we add that * 2
     elif twogram in scorelist:
       point = scorelist[twogram]
-      analysis.append([ twogram, point ])
+      show = True
+#      analysis.append([ twogram, point ])
       score += (point * 2)
 
     elif i in scorelist:
       point = scorelist[i]
-      analysis.append([ i, point ])
+      show = True
+#      analysis.append([ i, point ])
       score += point
 
     else:
@@ -440,7 +444,7 @@ def analyze(content):
   score /= 2.0
 
 # no words at all
-  if len(analysis) == 0:
+  if show == False: #len(analysis) == 0:
     score = 0
 
-  return ({ 'score': score, 'analysis': analysis, 'norm': wordcount })
+  return ({ 'score': score, 'norm': wordcount })
