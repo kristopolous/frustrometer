@@ -142,6 +142,11 @@ wordmap = {
   'incorrect': 'wrong',
 
 # misc
+  'aids': 'cancer',
+  'plague': 'cancer',
+  'polio': 'cancer',
+  'lukemia': 'cancer',
+
   'fired': 'fire',
 
   'ticked': 'piss',
@@ -184,6 +189,9 @@ scorelist = {
   'you warning': 0.30,
   'kill you': 0.80,
   'you die': 0.90,
+  'kill your children': 0.9,
+  'you children die': 0.6,
+  'you get cancer': 0.7,
 
 # racist vs. racial
 # Saying "he is black" is ok. 
