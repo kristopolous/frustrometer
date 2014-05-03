@@ -397,6 +397,7 @@ scorelist = {
   'sir': -0.2,
   'madam': -0.2,
   'was so nice': -0.2,
+  'how nice': -0.2,
   'nice to see': -0.2,
   'dear': -0.3,
   'dearest': -0.3,
@@ -413,7 +414,6 @@ scorelist = {
   'sincerely': -0.3,
   'please': -0.2,
   'feel free': -0.2,
-
 }
 
 def analyze(content):
