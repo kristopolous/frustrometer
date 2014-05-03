@@ -7,18 +7,20 @@
   background: -ms-linear-gradient(left, #0c0844 1%,#1a96d6 12%,#1a96d6 32%,#9b149b 61%,#ed3717 78%,#ed3717 88%,#ffef7c 100%); /* IE10+ */
   background: linear-gradient(to right, #0c0844 1%,#1a96d6 12%,#1a96d6 32%,#9b149b 61%,#ed3717 78%,#ed3717 88%,#ffef7c 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0844', endColorstr='#ffef7c',GradientType=1 ); /* IE6-9 */
+
   height: 14px;
-  border-radius: 10px;
-  border: 2px solid rgba(30,30,30, 0.9);
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  border: 1px solid rgba(30,30,30, 0.4);
 }
 
 .frustrometer .thermometer-title {
   display: inline-block;
   color: #333;
-  margin: -1px 0 0 6px;
+  margin: 0 0 0 1px;
   font-family: Verdana;
   font-size: 11px;
-  font-weight: bold;
 }
 
 .frustrometer .temp {
