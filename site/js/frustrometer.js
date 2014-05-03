@@ -53,7 +53,7 @@ self.frust = self.frust || {
     // color < 255
     div.style.fontSize = Math.max(1, Math.sqrt(color / 20)) + "em";
 
-    if(round(deltaScore / 5) != 0) {
+    if(Math.round(deltaScore / 5) != 0) {
       obj.wrapper.appendChild(div);
       var ival = setInterval(function(){
         ix--;
