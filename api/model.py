@@ -2,6 +2,59 @@
 import re
 import math
 
+snark = [
+ "Lick those boots!",
+ "You appear to be groveling.",
+ "Walking on eggshells?",
+ "Apologizing for something?",
+ "Is this a job interview?",
+ "Just delightful.",
+ "Quite polite.",
+ "So charming!",
+ "You're doing fine.",
+ "Such diplomatic prose!",
+ "Nothing wrong with this.",
+ "Everything is going nicely",
+ "Tactful like a chess game.",
+ "We're doing ok.",
+ "Not too worried yet...",
+ "Assertive and confident?!",
+ "Forward and direct?",
+ "What's your goal?",
+ "Blunt. Is that what you want?",
+ "What's your desired impact?",
+ "Editing is a great idea.",
+ "Having a bad day?",
+ "Different wording?",
+ "Starting to get saucy?",
+ "Being a bit snippy?",
+ "Approach this from a different angle.",
+ "Rather imposing.",
+ "Look at your word choice.",
+ "Would YOU like to receive this?",
+ "A bit too aggressive.",
+ "Really, what will you gain from posting this?",
+ "Step back for a few minutes.",
+ "Maybe you shouldn't say anything?",
+ "Read it outloud to yourself.",
+ "Very contemptuous. Breath in...",
+ "Perhaps finish this tomorrow?",
+ "That's flippant and combative!",
+ "People Will read this you know, right?",
+ "Danger Will Robinson!",
+ "You are crossing the Rubicon.",
+ "What Audacious Language!", 
+ "Careful careful...",
+ "You may be offending many people here.",
+ "These are fighting words.",
+ "You're starting fires here.",
+ "This is a bad idea.",
+ "You can't be serious...",
+ "The bridges are burning.",
+ "1, 2, 3, 4 I declare War!",
+ "Pack up your things and leave the building."
+]
+
 round0 = re.compile('\'')
 
 # markup
@@ -448,4 +501,10 @@ def analyze(content):
   if show == False: #len(analysis) == 0:
     score = 0
 
-  return ({ 'score': score, 'norm': wordcount })
+# score is weighted between 0 and 1
+# We multiply it by the length of our snarky list,
+# then round it, discard the precision to an int, and reference
+# into the table.
+  comment = snark[int(round(len(snark) * score))]
+
+  return ({ 'snark': comment, 'score': score, 'norm': wordcount })

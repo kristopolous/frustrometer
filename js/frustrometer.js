@@ -1,15 +1,14 @@
+self.frust = self.frust || {
+  // The cut off before showing the thermometer
+  thermo_above: 0.30,
+
+  // The cut off before showing the snarky comments
+  title_above: 0.5,
+
+  // polling interval for the textareas
+  ival_poll: 200
+};
 (function(){  
-
-  // a Very very cheap dom builder.
-  function d(attrib, type) {
-    var obj = document.createElement(type || 'div'), key;
-
-    for(key in attrib) {
-      obj.setAttribute(key, attrib[key]);
-    }
-
-    return obj;
-  }
 
   var words = {
     1: "Not enough information... :-(",
@@ -60,13 +59,22 @@
     96: "The bridges are burning.",
     98: "1, 2, 3, 4 I declare War!",
     100: "Pack up your things and leave the building."
-  }, 
-  // only show above this amount
-  showabove = 0.30;
+  };
+
+  // a Very very cheap dom builder.
+  function d(attrib, type) {
+    var obj = document.createElement(type || 'div'), key;
+
+    for(key in attrib) {
+      obj.setAttribute(key, attrib[key]);
+    }
+
+    return obj;
+  }
 
   function setLevel(rating, obj) {
-    obj.title.style.display = (rating > 0.05) ? 'block' : 'none';
-    obj.thermo.style.display = (rating > showabove) ? 'block' : 'none';
+    obj.title.style.display = (rating > frust.title_above) ? 'block' : 'none';
+    obj.thermo.style.display = (rating > frust.thermo_above) ? 'block' : 'none';
 
     rating *= 100;
     obj.temp.style.width = ( 100 - rating ) + "%";
@@ -151,7 +159,7 @@
         content = text;
         update(content, obj); 
       }
-    }, 200);
+    }, frust.ival_poll);
   }
 
   window.onload = function() {
