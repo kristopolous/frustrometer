@@ -10,6 +10,8 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Old+Standard+TT' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>
@@ -17,16 +19,20 @@
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <style> 
       body {background: url('img/subtle_grunge.png');color:#111}
+      a { color:darkblue}
       .bend { 
           display:inline-block;
           font-size:0.6em;
           color:#333;
       }
-      #woodcut{margin-right:1em;vertical-align:top}
-      #imgwrap {margin-top:1.5em}
-      #imgwrap > * { display: inline-block; text-align: left}
-      #imgwrap .text {width: 14em}
-      #imgwrap h2 { margin-bottom: 0.25em;padding-bottom:0.35em;margin-top:0;border-bottom:1px solid rgba(0,0,0,0.4)}
+      tt{font-size:0.75em;font-family: 'Droid Sans Mono', monospace;background:rgba(63,73,83,0.65);color:#fff;padding:0.1em 0.5em}
+      .imgwrap img{margin-right:1em;vertical-align:top}
+      .imgwrap {margin-top:1.5em}
+      .imgwrap > * { display: inline-block; text-align: left}
+      .imgwrap .text {width: 14em}
+      .imgwrap .text small{color:#111;font-family: 'Oleo Script', cursive;
+        transform:rotate(10deg);display:block;text-align:center}
+      .imgwrap h2 { margin-bottom: 0.25em;padding-bottom:0.35em;margin-top:0;border-bottom:1px solid rgba(0,0,0,0.4)}
       h3{line-height:1.25em;}
       .jumbotron h3{line-height:1.5em;}
       .jumbotron h1{margin-top:0.3em;border-bottom:4px double #333;display:inline-block;padding-bottom:0.5em}
@@ -36,16 +42,23 @@
       .jumbotron h4 big{font-size:1.3em}
       .jumbotron em{font-size:1.15em;margin-right:0.25em}
       #links {font-size:1.5em;font-family: 'Playfair Display', serif;background:rgba(63,73,83,0.1);}
+      #links h2 {font-size: 1.5em;border-bottom:2px groove rgba(140,140,140,0.6);padding-bottom:0.35em;text-shadow:0 1px 1px rgba(0,0,0,0.4)}
+      #links p {font-family: 'Playfair Display', serif}
+      #links big { font-size:1.25em }
+      #links{font-family: 'Old Standard TT', serif;color:#000}
       #demo { font-size: 1.5em;border-bottom:1em ridge rgba(246,203,81, 0.45);padding-bottom:1em}
       #demo p {color: rgba(0,0,0,0.85)}
       #demo em {font-size:1.25em;font-family: 'Oleo Script', cursive;font-style:normal}
       #demo h2 {font-family: 'Lobster', cursive;font-size:2em;margin-bottom:0.5em}
       #demo small{display:block;font-size:0.75em}
       #pitch{font-size:1.5em;font-family: 'Vidaloka', serif;padding: 2em 0;color:#111;text-align:center;background:rgba(246,203,81,0.3);}
+      #pitch .imgwrap {margin-bottom:1.5em}
+      #pitch .imgwrap .text {width: 11em}
+      #pitch p { margin: 0 0 0.25em 0}
       #pitch h1{margin: 1em 0;}
-      #pitch h5{font-size:1.5em;padding:0.5em;line-height:1.35em}
+      #pitch h5{font-size:1.5em;line-height:1.35em;; font-family: 'Playfair Display SC'}
       #pitch h4{font-size:1.25em;line-height:1.25em}
-      #pitch h2{font-size:3em;text-shadow: 1px 1px 2px rgb(63, 73, 83)}
+      #pitch h2{text-align:center;margin-bottom:0.25em;padding-bottom:0.25em;font-size:2.5em;text-shadow: 1px 1px 2px rgb(63, 73, 83)}
       textarea { padding: 0.5em; font-size: 1.25em }
     </style> 
       
@@ -61,7 +74,7 @@
       <div class="container" style=text-align:center> 
         <h3><em>Ladies</em> and <em>Gentlemen!</em><br> Introducing...</em></h3>
         <h1><span class='bend'>The</span> Amazing<br><b>Frustrometer</b></h1>
-        <div id='imgwrap'>
+        <div class='imgwrap'>
           <img id='woodcut' src="img/type.png">
           <div class='text'>
             <h2>THIS Magnificent Technology</h2>
@@ -73,20 +86,23 @@
     <div id="demo"> 
       <div class="container" style='text-align:center'>
         <h2>Try it out!</h2>
-        <p>Type <em>inappropriate</em> things in this box.<small>yes, really...</small></p>
+        <p>Type <em>inappropriate</em> things in this box.</p>
         <textarea style=width:20em rows=8></textarea>
       </div>
     </div>
 
     <div id='pitch'>
-      <H2><b>Hey you over there!</b><br>Yes You!</h2>
-      <h5>Do you enjoy the frustrometer?<br>
-      I say now, dear chap, do you like what you see?</h5>
-      <h4>Well I have a surprise for you...</h4>
-      <h1>&#9884;</h1>
-      <h3>You can use this <em>extraordinary</em> technology for absolutely free!</h3>
-      <h3><s>Finally something almost as cheap as you.</s></h3>
-      <p>Ahem, sorry about that. That was a bad idea.</p>
+      <div class='imgwrap'>
+        <img src=img/easy.png>
+        <div class='text'>
+          <H2>Flexible <small>~ and ~</small> Fast!</h2>
+          <h4>Relax knowing your messages are safe of slander.</h4>
+        </div>
+      </div>
+      <p>Do <b>think</b> the meter is <br>both <big>affordable</big> and <big>easy</big>.</p>
+      <img src=img/fleur.png>
+      <h5>You Can Do It.</h5>
+      <h3>The <em>extraordinary</em> meter<br> is free of charge!</h3>
     </div>
 
     <div id="links">
@@ -94,26 +110,21 @@
         <div class="row">
 
           <div class="col-md-4">
-            <h2>Put it on your site</h2>
-            <p>You can include the <a href="/js/frustrometer.js">script</a> on your site and have your <code>&lt;textareas&gt;</code> magically have a frustrometer without any coding whatsoever</p>
+            <h2>On your site</h2>
+            <p><big>Include</big> this snappy <a href="/js/frustrometer.js">javascript</a> and watch all of your <tt>&lt;textareas&gt;</tt> get magically frustrometered!</p>
           </div>
 
           <div class="col-md-4">
-            <h2>Put it in your browser (TODO)</h2>
-            <p>Install the <a href="/plugin">plugin</a>.</p>
-            <p>Available on all the respectable browsers and get the frustrometer with you on the go</p>
+            <h2>In your browser</h2>
+            <p><big>Install</big> the <a href="/plugin">plugin</a> and have the meter on the go.</p>
+            <p>(Available on all respectable browsers of distinguished taste.)</p>
           </div>
 
           <div class="col-md-4">
-            <h2>Use the API</h2>
-            <p>Currently it's unlimited and free. Try it out. Here's some examples:</p>
-            <pre>% curl 'http://frust.me/analyze' \
- --data '{"data":"wtf is this noise?"}'
-{
-  "score": 0.912888933264532, 
-  "snark": "This is a bad idea."
-}
-          </pre>
+            <h2>In your software</h2>
+            <p><big>Make</big> a curl call off to the API.</p>
+            <p>There's even a trendy domain to go with it. Try
+            <tt>curl frust.me/analyze --data '{"data":"rtfm"}'</tt></p>
           </div>
         </div>
 
