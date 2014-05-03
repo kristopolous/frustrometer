@@ -89,6 +89,7 @@ wordmap = {
   'fucker': 'fuck',
 
 # insults
+  'bozo': 'idiot',
   'asshole': 'idiot',
   'dickhead': 'idiot',
   'nigger': 'idiot',
@@ -139,6 +140,9 @@ wordmap = {
 
 # Calling someone out
   'incorrect': 'wrong',
+
+# misc
+  'fired': 'fire',
 };
 
 scorelist = {
@@ -154,13 +158,19 @@ scorelist = {
   'kiss i': 0.95,
   'lick i': 0.95,
   'in ass': 0.95,
-  'kill you': 0.80,
-  'you die': 0.90,
   'you bad': 0.5,
   'you suck': 0.8,
   'you ugly': 0.95,
   'you fat': 0.95,
   'you idiot': 0.95,
+
+# threats
+  'i warn': 0.15,
+  'i warning': 0.18,
+  'last warning': 0.30,
+  'you warning': 0.30,
+  'kill you': 0.80,
+  'you die': 0.90,
 
 # racist vs. racial
 # Saying "he is black" is ok. 
@@ -215,13 +225,16 @@ scorelist = {
   'stop bugging': 0.3,
   'stop bugging you': 0.4,
   'stop bugging me': 0.9,
-  'buggy': 0.3,
-  'bugs': 0.2,
+  'buggy': 0.15,
+  'bugs': 0.1,
   'broken': 0.15,
   'broke': 0.1,
   'so indecisive': 0.7,
   'hell': 0.5,
-  'to hell': 0.6,
+# Using the no middle, this will make go to hell really
+# strong
+  'to hell': 1.0,
+  'go hell': 1.0,
   'i mean': 0.15,
   'we went over': 0.2,
   'way i can': 0.3,
@@ -390,6 +403,7 @@ scorelist = {
 
 # you don't know for sure, that's good!
   'i think': -0.2,
+  'would': -0.15,
   'pretty close': -0.3,
   'i know where': -0.15,
   'its difficult': -0.1,
@@ -484,7 +498,7 @@ def analyze(content):
       analysis.append([ twogram, point ])
       score += point
 
-    elif twogram_nomiddle in scorelist:
+    if twogram_nomiddle in scorelist:
       point = scorelist[twogram_nomiddle]
       show = True
       analysis.append([ twogram_nomiddle, point ])

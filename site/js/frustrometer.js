@@ -39,7 +39,7 @@ self.frust = self.frust || {
 
     obj.score = res.score;
     obj.title.style.display = (res.score > frust.title_above) ? 'block' : 'none';
-    obj.thermo.style.display = (res.score > frust.thermo_above) ? 'block' : 'none';
+    obj.thermo.style.height = res.score + 'em';//(res.score > frust.thermo_above) ? 'block' : 'none';
     obj.temp.style.width = (1 - res.score) * 100  + "%";
     obj.title.innerHTML = res.snark;
 
@@ -129,7 +129,7 @@ self.frust = self.frust || {
     ta.parentNode.replaceChild(wrapper, ta);
     ta = wrapper.appendChild(ta);
     wrapper.appendChild(casing);
-    thermo.style.display = 'none';
+    thermo.style.height = "0.01em";
 
     return {
       score: frust.start_score,
