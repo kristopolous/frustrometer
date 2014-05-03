@@ -189,7 +189,7 @@ scorelist = {
 
 # Frustration
   'problem': 0.15,
-  'problems': 0.35,
+  'problems': 0.25,
   'alright': 0.2,
   'whatever': 0.2,
   'alright whatever': 0.3,
