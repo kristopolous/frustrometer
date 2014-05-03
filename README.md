@@ -1,6 +1,8 @@
 frustrometer
 ============
 
+Will eventually be live at [frustrometer.com](http://frustrometer.com).
+
 A tool to help those without tact know when they may be coming across as an ass.
 
 Here is an example of two ways of stating an issue.  In the first, a helpful temperature gauge has opened

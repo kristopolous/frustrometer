@@ -11,6 +11,10 @@ self.frust = self.frust || {
 
 (function(){  
 
+  self.frust.setuuid = function(uuid) {
+    self.frust.uuid = uuid;
+  }
+
   // a Very very cheap dom builder.
   function d(attrib, type) {
     var obj = document.createElement(type || 'div'), key;
@@ -30,6 +34,11 @@ self.frust = self.frust || {
   }
 
   function update(content, obj) {
+    // We can't move forward without a uuid regardless.
+    if (!self.frust.uuid) {
+      return;
+    }
+
     var request;
 
     if(update.lock != true) {
@@ -45,7 +54,12 @@ self.frust = self.frust || {
           update.lock = false;
         }
       }
-      request.send(content);
+
+      request.send(JSON.stringify({
+        uuid: frust.uuid,
+        ix: obj.ix,
+        data: content
+      }));
     }
   }
 
@@ -84,12 +98,13 @@ self.frust = self.frust || {
       thermo: thermo,
       temp: temp,
       ta: ta,
-      title: title
+      title: title,
+      ix: ix
     } 
   }
 
-  function listenTo(ta) {
-    var content, obj = wrap(ta);
+  function listenTo(ta, ix) {
+    var content, obj = wrap(ta, ix);
 
     setInterval(function() {
       var text = obj.ta.value;
@@ -115,7 +130,7 @@ self.frust = self.frust || {
     );
 
     for(var ix = 0; ix < taList.length; ix++) {
-      listenTo(taList[ix]); 
+      listenTo(taList[ix], ix); 
     }
   }
 })();
