@@ -170,6 +170,7 @@ wordmap = {
 scorelist = {
 # This anywhere is a bad idea.
   'fuck': 1,
+  'fuck you': 1,
 
   'crap': 0.9,
   'dumb': 0.5,
