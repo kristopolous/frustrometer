@@ -29,15 +29,15 @@ self.frust = self.frust || {
   function setLevel(res, obj) {
     obj.title.style.display = (res.score > frust.title_above) ? 'block' : 'none';
     obj.thermo.style.display = (res.score > frust.thermo_above) ? 'block' : 'none';
-    obj.temp.style.width = (1 - rating) * 100  + "%";
+    obj.temp.style.width = (1 - res.score) * 100  + "%";
     obj.title.innerHTML = res.snark;
   }
 
   function update(content, obj) {
-    // We can't move forward without a uuid regardless.
-    if (!self.frust.uuid) {
-      return;
-    }
+    // We can't move forward without a uuid regardless. (future)
+    // if (!self.frust.uuid) {
+    //  return;
+    // }
 
     var request;
 
@@ -45,7 +45,7 @@ self.frust = self.frust || {
       update.lock = true;
 
       request = new XMLHttpRequest();
-      request.open('POST', "//" + document.location.hostname + "/analyze", true);
+      request.open('POST', "//frustrometer.com/analyze", true);
       request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
       request.onreadystatechange = function() {
         if (request.readyState == 4) {
@@ -56,8 +56,9 @@ self.frust = self.frust || {
       }
 
       request.send(JSON.stringify({
-        uuid: frust.uuid,
-        ix: obj.ix,
+        // may be needed for xdom
+        // with older browsers (future)
+        // uuid: frust.uuid,
         data: content
       }));
     }
@@ -98,13 +99,12 @@ self.frust = self.frust || {
       thermo: thermo,
       temp: temp,
       ta: ta,
-      title: title,
-      ix: ix
+      title: title
     } 
   }
 
-  function listenTo(ta, ix) {
-    var content, obj = wrap(ta, ix);
+  function listenTo(ta) {
+    var content = false, obj = wrap(ta);
 
     setInterval(function() {
       var text = obj.ta.value;
@@ -112,6 +112,10 @@ self.frust = self.frust || {
       obj.thermo.style.width = obj.ta.offsetWidth;
 
       if(text != content && (text.substr(-1).match(/[\ !?\.]/) || text.length == 0)) {
+        // This prevents an initial call from going out for every empty container
+        if(text.length == 0 && content == false) {
+          return;
+        }
         content = text;
         update(content, obj); 
       }
