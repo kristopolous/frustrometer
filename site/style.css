@@ -1,3 +1,7 @@
+.frustrometer {
+  display:inline-block;
+}
+
 .frustrometer .thermometer {
   background: #0c0844; /* Old browsers */
   background: -moz-linear-gradient(left, #0c0844 1%, #1a96d6 12%, #1a96d6 32%, #9b149b 61%, #ed3717 78%, #ed3717 88%, #ffef7c 100%); /* FF3.6+ */
@@ -16,6 +20,7 @@
 }
 
 .frustrometer .thermometer-title {
+  text-align: left;
   display: inline-block;
   color: #333;
   margin: 0 0 0 1px;
