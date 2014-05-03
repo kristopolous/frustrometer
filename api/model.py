@@ -505,6 +505,6 @@ def analyze(content):
 # We multiply it by the length of our snarky list,
 # then round it, discard the precision to an int, and reference
 # into the table.
-  comment = snark[int(round(len(snark) * score))]
+  comment = snark[int(round((len(snark) - 1) * score))]
 
   return ({ 'snark': comment, 'score': score, 'norm': wordcount })
