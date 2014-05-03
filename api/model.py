@@ -153,6 +153,7 @@ scorelist = {
   'kiss i': 0.95,
   'lick i': 0.95,
   'in ass': 0.95,
+  'you bad': 0.9,
   'you suck': 0.8,
   'you ugly': 0.95,
   'you fat': 0.95,
