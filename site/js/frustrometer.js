@@ -84,10 +84,11 @@ self.frust = self.frust || {
             temp = d({"class": "temp"}),
           title = d({"class": "thermometer-title"});
 
+    // self.ta = ta;
     thermo.appendChild(temp);
     casing.appendChild(thermo);
     casing.appendChild(title);
-    thermo.style.width = ta.offsetWidth;
+    thermo.style.width = ta.offsetWidth + "px";
 
     // wrap this 
     ta.parentNode.replaceChild(wrapper, ta);
