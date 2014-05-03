@@ -204,6 +204,8 @@ scorelist = {
   'stop bugging': 0.3,
   'stop bugging you': 0.4,
   'stop bugging me': 0.9,
+  'buggy': 0.3,
+  'bugs': 0.2,
   'so indecisive': 0.7,
   'hell': 0.5,
   'to hell': 0.6,
