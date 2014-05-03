@@ -230,6 +230,9 @@ scorelist = {
   'broken': 0.15,
   'broke': 0.1,
   'so indecisive': 0.7,
+  'nonsense': 0.05,
+  'trash': 0.05,
+  'garbage': 0.05,
   'hell': 0.5,
 # Using the no middle, this will make go to hell really
 # strong
