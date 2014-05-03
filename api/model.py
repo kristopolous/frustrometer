@@ -153,7 +153,7 @@ scorelist = {
   'kiss i': 0.95,
   'lick i': 0.95,
   'in ass': 0.95,
-  'you bad': 0.9,
+  'you bad': 0.5,
   'you suck': 0.8,
   'you ugly': 0.95,
   'you fat': 0.95,
@@ -198,6 +198,7 @@ scorelist = {
   'utter': 0.4,
   'utter ridiculous': 0.6,
   'final': 0.3,
+  'stop': 0.2,
   'many times': 0.4,
   'how many times': 0.6,
   'jesus christ': 0.8,
@@ -462,7 +463,7 @@ def analyze(content):
       point = scorelist[threegram]
       show = True
       analysis.append([ threegram, point ])
-      score += (point * 3)
+      score += (point * 2)
 
 # If the 2-gram was found
 # we add that * 2
@@ -470,7 +471,7 @@ def analyze(content):
       point = scorelist[twogram]
       show = True
       analysis.append([ twogram, point ])
-      score += (point * 2)
+      score += point
 
     elif i in scorelist:
       point = scorelist[i]
@@ -508,6 +509,8 @@ def analyze(content):
   if show == False: #len(analysis) == 0:
     score = 0
 
+  if score > 1.0:
+    score = 1.0
 # score is weighted between 0 and 1
 # We multiply it by the length of our snarky list,
 # then round it, discard the precision to an int, and reference
