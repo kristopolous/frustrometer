@@ -2,6 +2,9 @@ self.frust = self.frust || {
   // The cut off before showing the thermometer
   thermo_above: 0.30,
 
+  // The neutral score
+  start_score: 0.25,
+
   // The cut off before showing the snarky comments
   title_above: 0.05,
 
@@ -129,7 +132,7 @@ self.frust = self.frust || {
     thermo.style.display = 'none';
 
     return {
-      score: 0,
+      score: frust.start_score,
       wrapper: wrapper,
       thermo: thermo,
       temp: temp,

@@ -433,8 +433,9 @@ scorelist = {
 }
 
 def analyze(content):
+  # 0.30 is about the neutral break point
   if len(content) == 0:
-    return ({ 'score': 0, 'snark': "" })
+    return ({ 'score': 0.25, 'snark': "" })
 
   show = False
   wordcount = 0
@@ -521,7 +522,7 @@ def analyze(content):
 
 # no words at all
   if show == False: #len(analysis) == 0:
-    score = 0
+    score = 0.25
 
   if score > 1.0:
     score = 1.0
