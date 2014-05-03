@@ -3,63 +3,13 @@ self.frust = self.frust || {
   thermo_above: 0.30,
 
   // The cut off before showing the snarky comments
-  title_above: 0.5,
+  title_above: 0.05,
 
   // polling interval for the textareas
   ival_poll: 200
 };
-(function(){  
 
-  var words = {
-    1: "Not enough information... :-(",
-    2: "Lick those boots!",
-    4: "You appear to be groveling.",
-    6: "Walking on eggshells?",
-    8: "Apologizing for something?",
-    10: "Is this a job interview?",
-    12: "Just delightful.",
-    14: "Quite polite.",
-    16: "So charming!",
-    18: "You're doing fine.",
-    20: "Such diplomatic prose!",
-    23: "Nothing wrong with this.",
-    26: "Tactful like a chess game.",
-    29: "Not too worried yet...",
-    32: "Assertive and confident?!",
-    35: "Forward and direct.",
-    38: "What's your goal?",
-    40: "Blunt. Is that what you want?",
-    42: "What's your desired impact?",
-    44: "Editing is a great idea.",
-    46: "Having a bad day?",
-    48: "Different wording?",
-    50: "Starting to get saucy?",
-    52: "Being a bit snippy?",
-    54: "Approach this from a different angle.",
-    56: "Rather imposing.",
-    58: "Would YOU like to receive this?",
-    60: "A bit too aggressive.",
-    62: "Really, what will you gain from posting this?",
-    64: "Step back for a few minutes.",
-    66: "Maybe you shouldn't say anything?",
-    68: "Read it outloud to yourself.",
-    70: "Very contemptuous. Breath in...",
-    72: "Perhaps finish this tomorrow?",
-    74: "That's flippant and combative!",
-    76: "People Will read this you know, right?",
-    78: "Danger Will Robinson!",
-    80: "You are crossing the Rubicon.",
-    82: "What Audacious Language!", 
-    84: "Careful careful...",
-    86: "You may be offending many people here.",
-    88: "These are fighting words.",
-    90: "You're starting fires here.",
-    92: "This is a bad idea.",
-    94: "You can't be serious...",
-    96: "The bridges are burning.",
-    98: "1, 2, 3, 4 I declare War!",
-    100: "Pack up your things and leave the building."
-  };
+(function(){  
 
   // a Very very cheap dom builder.
   function d(attrib, type) {
@@ -72,19 +22,11 @@ self.frust = self.frust || {
     return obj;
   }
 
-  function setLevel(rating, obj) {
-    obj.title.style.display = (rating > frust.title_above) ? 'block' : 'none';
-    obj.thermo.style.display = (rating > frust.thermo_above) ? 'block' : 'none';
-
-    rating *= 100;
-    obj.temp.style.width = ( 100 - rating ) + "%";
-
-    for(var level in words) {
-      if (rating <= level) {
-        obj.title.innerHTML = words[level];
-        return;
-      }
-    }
+  function setLevel(res, obj) {
+    obj.title.style.display = (res.score > frust.title_above) ? 'block' : 'none';
+    obj.thermo.style.display = (res.score > frust.thermo_above) ? 'block' : 'none';
+    obj.temp.style.width = (1 - rating) * 100  + "%";
+    obj.title.innerHTML = res.snark;
   }
 
   function update(content, obj) {
@@ -94,18 +36,17 @@ self.frust = self.frust || {
       update.lock = true;
 
       request = new XMLHttpRequest();
-      request.open('POST', "//" + document.location.hostname + "/cgi", true);
+      request.open('POST', "//" + document.location.hostname + "/analyze", true);
       request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
       request.onreadystatechange = function() {
         if (request.readyState == 4) {
           var res = JSON.parse(request.responseText);
-          setLevel(res.score, obj);
+          setLevel(res, obj);
           update.lock = false;
         }
       }
       request.send(content);
     }
-
   }
 
   function wrap(ta) {
@@ -164,6 +105,14 @@ self.frust = self.frust || {
 
   window.onload = function() {
     var taList = document.getElementsByTagName('textarea');
+
+    document.body.appendChild(
+      d({
+        type: 'text/css',
+        rel: 'stylesheet',
+        href: '//frustrometer.com/style.css'
+      }, 'link')
+    );
 
     for(var ix = 0; ix < taList.length; ix++) {
       listenTo(taList[ix]); 
