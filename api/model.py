@@ -498,7 +498,7 @@ def analyze(content):
 # we will take a small positive read on every word we
 # see
       if i not in empty:
-        score += -0.079 
+        score += -0.082 
 
 # now we'll do the score divided by the length of words 
   wordcount = max([wordcount, 1])
