@@ -62,7 +62,7 @@ round0a = re.compile('<[^>]*>|&\w*;')
 round1 = re.compile('[-,|<>;:\/\.!\"?)(\n]')
 
 # something like stop words
-round2 = re.compile(' (a |of |as |is |am |had |that |those |are |the |and |for )*')
+round2 = re.compile(' (a |of |as |so |is |am |had |that |those |are |the |and |for )*')
 
 # endings - primitive stemming
 round2a = re.compile('(ly) ')
@@ -399,7 +399,7 @@ scorelist = {
 # manners!
   'sir': -0.2,
   'madam': -0.2,
-  'was so nice': -0.2,
+  'was nice': -0.2,
   'how nice': -0.2,
   'nice to see': -0.2,
   'dear': -0.3,
