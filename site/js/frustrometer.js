@@ -27,10 +27,42 @@ self.frust = self.frust || {
   }
 
   function setLevel(res, obj) {
+    var deltaScore = Math.floor(1000 * (res.score - obj.score)),
+      start = 40,
+      sum = 0,
+      color = Math.min(255, Math.abs(deltaScore)),
+      ix = start,
+      div = d({'class': 'score'});
+
+    obj.score = res.score;
     obj.title.style.display = (res.score > frust.title_above) ? 'block' : 'none';
     obj.thermo.style.display = (res.score > frust.thermo_above) ? 'block' : 'none';
     obj.temp.style.width = (1 - res.score) * 100  + "%";
     obj.title.innerHTML = res.snark;
+
+    if(deltaScore > 0) {
+      div.style.color = "rgb(" + [ color , 0 , 0 ].join(',') + ")";
+      div.innerHTML = "+" + deltaScore;
+    } else {
+      div.innerHTML = deltaScore;
+      div.style.color = "rgb(" + [ 0, Math.min(color * 3, 255) , 0 ].join(',') + ")";
+    }
+    // color < 255
+    div.style.fontSize = Math.max(1, Math.sqrt(color / 20)) + "em";
+
+    if(deltaScore != 0) {
+      obj.wrapper.appendChild(div);
+      var ival = setInterval(function(){
+        ix--;
+        sum += ix;
+        div.style.bottom = (sum / 10) + "px";
+        div.style.opacity = ix / start;
+        if(ix < 0) { 
+          obj.wrapper.removeChild(div);
+          clearInterval(ival);
+        }
+      }, 15);
+    }
   }
 
   function update(content, obj) {
@@ -97,6 +129,8 @@ self.frust = self.frust || {
     thermo.style.display = 'none';
 
     return {
+      score: 0,
+      wrapper: wrapper,
       thermo: thermo,
       temp: temp,
       ta: ta,
@@ -130,6 +164,7 @@ self.frust = self.frust || {
       d({
         type: 'text/css',
         rel: 'stylesheet',
+//        href: 'style.css'
         href: '//frust.me/style.css'
       }, 'link')
     );

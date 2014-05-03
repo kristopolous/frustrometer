@@ -178,12 +178,18 @@ scorelist = {
 # is perfectly acceptable in some contexts.  
 # "Most blacks believe ..." is totally not.
 
+# urgency
+  'need': 0.05,
+  'must': 0.05,
+
 # Sarcastometer!
   'oh look': 0.3,
   'duh': 0.6,
   'bingo': 0.4,
 
 # Frustration
+  'problem': 0.15,
+  'problems': 0.35,
   'alright': 0.2,
   'whatever': 0.2,
   'alright whatever': 0.3,
@@ -457,6 +463,7 @@ def analyze(content):
       wordcount += 1
 
     twogram = lastword + ' ' + i
+    twogram_nomiddle = lastlastword + ' ' + i
     threegram = lastlastword + ' ' + lastword + ' ' + i
 
     lastlastword = lastword
@@ -472,6 +479,12 @@ def analyze(content):
       point = scorelist[twogram]
       show = True
       analysis.append([ twogram, point ])
+      score += point
+
+    elif twogram_nomiddle in scorelist:
+      point = scorelist[twogram_nomiddle]
+      show = True
+      analysis.append([ twogram_nomiddle, point ])
       score += point
 
     elif i in scorelist:

@@ -1,4 +1,5 @@
 .frustrometer {
+  position: relative;
   display:inline-block;
 }
 
@@ -12,7 +13,7 @@
   background: linear-gradient(to right, #0c0844 1%,#1a96d6 12%,#1a96d6 32%,#9b149b 61%,#ed3717 78%,#ed3717 88%,#ffef7c 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0844', endColorstr='#ffef7c',GradientType=1 ); /* IE6-9 */
 
-  height: 14px;
+  height: 0.75em;
   overflow: hidden;
   border-radius: 5px;
   margin-bottom: 2px;
@@ -25,6 +26,14 @@
   color: #333;
   margin: 0 0 0 1px;
   font-family: Verdana;
+}
+
+.frustrometer .score {
+  position: absolute;
+  font-weight: bold;
+  right: 20px;
+  font-size: 1.5em;
+  bottom: 10px; 
 }
 
 .frustrometer .temp {
