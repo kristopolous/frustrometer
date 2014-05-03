@@ -77,6 +77,7 @@ wordmap = {
 # parts of speech
   'youre': 'you',
   'your': 'you',
+  'yourself': 'you',
   'im': 'i',
   'my': 'i',
   'ive': 'i',
@@ -153,6 +154,8 @@ scorelist = {
   'kiss i': 0.95,
   'lick i': 0.95,
   'in ass': 0.95,
+  'kill you': 0.80,
+  'you die': 0.90,
   'you bad': 0.5,
   'you suck': 0.8,
   'you ugly': 0.95,
@@ -463,10 +466,8 @@ def analyze(content):
       point = scorelist[threegram]
       show = True
       analysis.append([ threegram, point ])
-      score += (point * 2)
+      score += point
 
-# If the 2-gram was found
-# we add that * 2
     elif twogram in scorelist:
       point = scorelist[twogram]
       show = True
