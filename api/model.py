@@ -418,7 +418,7 @@ scorelist = {
 
 def analyze(content):
   if len(content) == 0:
-    return ({ 'score': 0, 'norm': 0 })
+    return ({ 'score': 0, 'snark': "" })
 
   show = False
   wordcount = 0
@@ -455,7 +455,7 @@ def analyze(content):
     if threegram in scorelist:
       point = scorelist[threegram]
       show = True
-#      analysis.append([ threegram, point ])
+      analysis.append([ threegram, point ])
       score += (point * 3)
 
 # If the 2-gram was found
@@ -463,13 +463,13 @@ def analyze(content):
     elif twogram in scorelist:
       point = scorelist[twogram]
       show = True
-#      analysis.append([ twogram, point ])
+      analysis.append([ twogram, point ])
       score += (point * 2)
 
     elif i in scorelist:
       point = scorelist[i]
       show = True
-#      analysis.append([ i, point ])
+      analysis.append([ i, point ])
       score += point
 
     else:
@@ -508,4 +508,4 @@ def analyze(content):
 # into the table.
   comment = snark[int(round((len(snark) - 1) * score))]
 
-  return ({ 'snark': comment, 'score': score, 'norm': wordcount })
+  return ({ 'snark': comment, 'score': score })
