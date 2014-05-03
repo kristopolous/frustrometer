@@ -143,6 +143,19 @@ wordmap = {
 
 # misc
   'fired': 'fire',
+
+  'ticked': 'piss',
+  'tick': 'piss',
+  'ticks': 'piss',
+  'pisses': 'piss',
+  'pissed': 'piss',
+
+  'complained': 'complain',
+  'complaining': 'complain',
+
+  'fixed': 'fix',
+  'fixes': 'fix',
+  'fixing': 'fix'
 };
 
 scorelist = {
@@ -200,6 +213,12 @@ scorelist = {
 # Frustration
   'problem': 0.15,
   'problems': 0.25,
+  'i frustrate': 0.15,
+  'you complain': 0.25,
+  'you frustrate': 0.25,
+  'i frustrated': 0.25,
+  'piss i': 0.20,
+  'infuriating': 0.20,
   'alright': 0.2,
   'whatever': 0.2,
   'alright whatever': 0.3,
@@ -227,6 +246,11 @@ scorelist = {
   'stop bugging me': 0.9,
   'buggy': 0.15,
   'bugs': 0.1,
+
+# positive.
+  'fix bugs': -0.2,
+  'fix bug': -0.2,
+
   'broken': 0.15,
   'broke': 0.1,
   'so indecisive': 0.7,
