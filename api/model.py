@@ -122,6 +122,7 @@ wordmap = {
 # Blame game
   'fault': 'error',
   'mistake': 'error',
+  'mistakes': 'error',
   'sorry': 'error',
 
   'told': 'said',
@@ -255,6 +256,8 @@ scorelist = {
 
 # YOUR mistake
   'you error': 0.7,
+  'you many error': 0.9,
+  'i many error': 0.3,
   'you wrong': 0.5,
 
 # really bad idea here...
