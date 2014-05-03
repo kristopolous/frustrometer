@@ -84,6 +84,8 @@ wordmap = {
    
 # profanity
   'shit' : 'fuck',
+  'bullshit': 'fuck',
+  'bs': 'fuck',
   'fucking': 'fuck',
   'motherfucker': 'fuck',
   'fucker': 'fuck',
