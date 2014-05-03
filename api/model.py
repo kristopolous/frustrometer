@@ -159,6 +159,8 @@ wordmap = {
 
   'complained': 'complain',
   'complaining': 'complain',
+  
+  'damned': 'damn',
 
   'fixed': 'fix',
   'fixes': 'fix',
@@ -171,6 +173,7 @@ scorelist = {
 
   'crap': 0.9,
   'dumb': 0.5,
+  'damn': 0.7,
   'bad': 0.4,
 
 # really bad idea here.
