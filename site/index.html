@@ -10,17 +10,30 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Vidaloka' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <style> 
       body {background: url('img/subtle_grunge.png');color:#111}
+      .bend { 
+          display:inline-block;
+          font-size:0.6em;
+          color:#333;
+      }
       h3{line-height:1.25em;}
+      .jumbotron h3{line-height:1.5em;}
+      .jumbotron h1{margin-top:0.3em;border-bottom:3px double #333;display:inline-block;padding-bottom:0.5em}
+      .jumbotron b{letter-spacing: 0.1em;color:rgba(0,0,0,0.8)}
       .jumbotron {text-align:center;line-height:1.25em; font-family: 'Playfair Display SC', serif; background: rgba(242,231,218,0.5);margin-bottom:0;padding-bottom:3.5em;border-bottom:2em solid rgba(19,168,158, 0.2);padding-top:0.5em}
       .jumbotron h4{line-height:1.5em}
+      .jumbotron h4 big{font-size:1.3em}
       .jumbotron em{font-size:1.15em;margin-right:0.25em}
-      #demo {font-size:1.5em;background:rgba(63,73,83,0.3);padding:2em 0}
-      #demo p {font-style: italic}
+      #links {font-size:1.5em;font-family: 'Playfair Display', serif;background:rgba(63,73,83,0.1);}
+      #demo { font-size: 1.5em}
+      #demo p {color: rgba(0,0,0,0.85);}
+      #demo em {font-size:1.25em;font-family: 'Oleo Script', cursive;font-style:normal}
       #demo h2 {font-family: 'Lobster', cursive;font-size:2em;margin-bottom:0.5em}
       #demo small{display:block;font-size:0.75em}
       #pitch{font-size:1.5em;font-family: 'Vidaloka', serif;padding: 2em 0;color:#111;text-align:center;background:rgba(246,203,81,0.3);}
@@ -41,16 +54,16 @@
   <body>
     <div class="jumbotron">
       <div class="container" style=text-align:center> 
-        <h3><em>Ladies and Gentlemen!<br> Introducing...</em></h3>
-        <h1>The Amazing Frustrometer</h1>
+        <h3><em>Ladies</em> and <em>Gentlemen!</em><br> Introducing...</em></h3>
+        <h1><span class='bend'>The</span> Amazing<br><b>Frustrometer</b></h1>
         <h2>THIS Magnificent Technology</h2>
-        <h4>Will Analyze<br> How Appropriate <b>Your</b> Messages Are<br> <em>While</em> You Type Them!</h4>
+        <h4>Will Analyze How <big>Appropriate</big><br> <b>Your</b> Messages Are<br> <em>While</em> You Type Them!</h4>
       </div>
     </div>
     <div id="demo"> 
       <div class="container" style='text-align:center'>
         <h2>Try it out!</h2>
-        <p>Type inappropriate things in this box.<small>yes, really...</small></p>
+        <p>Type <em>inappropriate</em> things in this box.<small>yes, really...</small></p>
         <textarea style=width:20em rows=8></textarea>
       </div>
     </div>
@@ -66,32 +79,33 @@
       <p>Ahem, sorry about that. That was a bad idea.</p>
     </div>
 
-    <div class="container" id="links"> 
-      <div class="row">
+    <div id="links">
+      <div class="container"> 
+        <div class="row">
 
-        <div class="col-md-4">
-          <h2>Put it on your site</h2>
-          <p>You can include the <a href="/js/frustrometer.js">script</a> on your site and have your <code>&lt;textareas&gt;</code> magically have a frustrometer without any coding whatsoever</p>
-        </div>
+          <div class="col-md-4">
+            <h2>Put it on your site</h2>
+            <p>You can include the <a href="/js/frustrometer.js">script</a> on your site and have your <code>&lt;textareas&gt;</code> magically have a frustrometer without any coding whatsoever</p>
+          </div>
 
-        <div class="col-md-4">
-          <h2>Put it in your browser (TODO)</h2>
-          <p>Install the <a href="/plugin">plugin</a>.</p>
-          <p>Available on all the respectable browsers and get the frustrometer with you on the go</p>
-        </div>
+          <div class="col-md-4">
+            <h2>Put it in your browser (TODO)</h2>
+            <p>Install the <a href="/plugin">plugin</a>.</p>
+            <p>Available on all the respectable browsers and get the frustrometer with you on the go</p>
+          </div>
 
-        <div class="col-md-4">
-          <h2>Use the API</h2>
-          <p>Currently it's unlimited and free. Try it out. Here's some examples:</p>
-          <pre>% curl 'http://frust.me/analyze' \
+          <div class="col-md-4">
+            <h2>Use the API</h2>
+            <p>Currently it's unlimited and free. Try it out. Here's some examples:</p>
+            <pre>% curl 'http://frust.me/analyze' \
  --data '{"data":"wtf is this noise?"}'
 {
   "score": 0.912888933264532, 
   "snark": "This is a bad idea."
 }
           </pre>
+          </div>
         </div>
-      </div>
 
       <hr>
 
@@ -99,9 +113,8 @@
         <p>&copy; frustrometer, 2014. <a href="https://github.com/kristopolous/frustrometer">Source Code</a></p>
       </footer>
     </div>
+      </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/frustrometer.js"></script>
