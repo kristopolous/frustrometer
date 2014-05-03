@@ -303,6 +303,7 @@ scorelist = {
 # even if it's i should rtfm
   'rtfm': 1.0,
   'stfu': 1.0,
+  'wtf': 1.0,
   'rtm': 0.8,
   'omg': 0.7,
   'omfg': 0.9,
