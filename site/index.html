@@ -23,6 +23,8 @@
       <div class="container"> 
         <h1>frustrometer</h1>
         <p>Analyze how appropriate your messages are before you send them.</p>
+        <h3>Try it out! Start typing inappropriate things in this box. Really...</h3>
+        <textarea style=width:650px rows=10></textarea>
       </div>
     </div>
 
@@ -31,17 +33,25 @@
 
         <div class="col-md-4">
           <h2>Put it on your site</h2>
-          <p>You can include the <a href="/js/frustrometer">script</a> on your site and have your <code>&lt;textareas&gt;</code> magically have a frustrometer without any coding whatsoever</p>
+          <p>You can include the <a href="/js/frustrometer.js">script</a> on your site and have your <code>&lt;textareas&gt;</code> magically have a frustrometer without any coding whatsoever</p>
         </div>
 
         <div class="col-md-4">
           <h2>Put it in your browser</h2>
-          <p>Install the <a href="/plugin">plugin</a> available on all the respectable browsers and get the frustrometer with you on the go</p>
+          <p>Install the <a href="/plugin">plugin</a>.</p>
+          <p>Available on all the respectable browsers and get the frustrometer with you on the go</p>
         </div>
 
         <div class="col-md-4">
           <h2>Use the API</h2>
-          <p>Currently it's unlimited and free. Try it out below</p>
+          <p>Currently it's unlimited and free. Try it out. Here's some examples:</p>
+          <pre>% curl 'http://frust.me/analyze' \
+ --data '{"data":"wtf is this noise?"}'
+{
+  "score": 0.912888933264532, 
+  "snark": "This is a bad idea."
+}
+          </pre>
         </div>
       </div>
 

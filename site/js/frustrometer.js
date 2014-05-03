@@ -45,7 +45,7 @@ self.frust = self.frust || {
       update.lock = true;
 
       request = new XMLHttpRequest();
-      request.open('POST', "//frustrometer.com/analyze", true);
+      request.open('POST', "//frust.me/analyze", true);
       request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
       request.onreadystatechange = function() {
         if (request.readyState == 4) {
@@ -129,7 +129,7 @@ self.frust = self.frust || {
       d({
         type: 'text/css',
         rel: 'stylesheet',
-        href: '//frustrometer.com/style.css'
+        href: '//frust.me/style.css'
       }, 'link')
     );
 
