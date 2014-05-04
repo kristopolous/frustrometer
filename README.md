@@ -1,7 +1,7 @@
 frustrometer
 ============
 
-Will eventually be live at [frustrometer.com](http://frustrometer.com).
+Live at [frustrometer.com](http://frustrometer.com) or [frust.me](http://frust.me).
 
 A tool to help those without tact know when they may be coming across as an ass.
 
