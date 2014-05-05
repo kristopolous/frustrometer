@@ -182,6 +182,7 @@ scorelist = {
   'kiss i': 0.95,
   'lick i': 0.95,
   'in ass': 0.95,
+  'you anus': 0.8,
   'you bad': 0.5,
   'you suck': 0.8,
   'you ugly': 0.95,
@@ -511,50 +512,39 @@ def analyze(content):
   words = re.sub(round2a,' ',words)
   words = re.sub(round3,' ',words).split()
 
+  seq = []
   for i in words: 
 
 # Here's where we do the word reduction
     if i in wordmap:
       i = wordmap[i]  
 
+    seq.append(i)
+
     if i not in empty:
       wordcount += 1
 
-    twogram = lastword + ' ' + i
     twogram_nomiddle = lastlastword + ' ' + i
-    threegram = lastlastword + ' ' + lastword + ' ' + i
 
     lastlastword = lastword
     lastword = i
 
-    if threegram in scorelist:
-      point = scorelist[threegram]
-      show = True
-      analysis.append([ threegram, point ])
-      score += point
+    for gram in range(-2, -5, -1):
+      candidate = " ".join(seq[gram:-1])
 
-    elif twogram in scorelist:
-      point = scorelist[twogram]
-      show = True
-      analysis.append([ twogram, point ])
-      score += point
+      if candidate in scorelist:
+        point = scorelist[candidate]
+        analysis.append([ candidate, point ])
+        score += point
 
     if twogram_nomiddle in scorelist:
       point = scorelist[twogram_nomiddle]
-      show = True
       analysis.append([ twogram_nomiddle, point ])
       score += point
 
-    elif i in scorelist:
-      point = scorelist[i]
-      show = True
-      analysis.append([ i, point ])
-      score += point
-
-    else:
 # we will take a small positive read on every word we
 # see
-      if i not in empty:
+    elif i not in empty:
         score += -0.082 
 
 # now we'll do the score divided by the length of words 
@@ -577,10 +567,6 @@ def analyze(content):
   score += 1.0
   score /= 2.0
 
-# no words at all
-  if show == False: #len(analysis) == 0:
-    score = 0.25
-
   if score > 1.0:
     score = 1.0
 # score is weighted between 0 and 1
@@ -589,4 +575,4 @@ def analyze(content):
 # into the table.
   comment = snark[int(round((len(snark) - 1) * score))]
 
-  return ({ 'snark': comment, 'score': score })
+  return ({ 'snark': comment, 'score': score, 'analysis': analysis })
