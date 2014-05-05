@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import json
+import log
 import model
 
 def application(environ, start_response):
@@ -10,7 +11,12 @@ def application(environ, start_response):
       ('Content-Type', 'application/json')
     ])
 
-    content = json.loads(environ['wsgi.input'].read(int(environ.get('CONTENT_LENGTH', '0'))))
-    res = model.analyze(content['data'])
+    raw = environ['wsgi.input'].read(int(environ.get('CONTENT_LENGTH', '0')))
+    log.logit(raw)
+    content = json.loads(raw)
+    if 'id' in content and content['id'] == 'fave':
+      log.faveit(raw)
+    else:
+      res = model.analyze(content['data'])
 
     return [json.dumps(res)]
