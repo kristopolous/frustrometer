@@ -10,6 +10,9 @@ self.frust = self.frust || {
 
   // polling interval for the textareas
   ival_poll: 200
+
+  site: (document.location.host == 'local.frust.me') ? 
+    '//local.' : '//www.'
 };
 
 (function(){  
@@ -23,7 +26,11 @@ self.frust = self.frust || {
     var obj = document.createElement(type || 'div'), key;
 
     for(key in attrib) {
-      obj.setAttribute(key, attrib[key]);
+      if(key == 'html') {
+        obj.innerHTML = attrib[key];
+      } else {
+        obj.setAttribute(key, attrib[key]);
+      }
     }
 
     return obj;
@@ -68,35 +75,48 @@ self.frust = self.frust || {
     }
   }
 
+  function post(url, data, cb, force) {
+    if(post.lock != true || force) {
+      if(!force) {
+        post.lock = true;
+      }
+
+      var request = new XMLHttpRequest();
+      request.open('POST', url, true);
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+      request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+          var res = JSON.parse(request.responseText);
+          cb(res);
+          if(!force) {
+            post.lock = false;
+          }
+        }
+      }
+
+      request.send(JSON.stringify(data));
+    }
+  }
+
   function update(content, obj) {
     // We can't move forward without a uuid regardless. (future)
     // if (!self.frust.uuid) {
     //  return;
     // }
 
-    var request;
+    post(
+      frust.site + "frust.me/analyze",
+      {data: content},
+      function(res) { setLevel(res, obj); }
+    );
+  }
 
-    if(update.lock != true) {
-      update.lock = true;
+  function autocorrect() {
+    console.log(this, arguments);
+  }
 
-      request = new XMLHttpRequest();
-      request.open('POST', "//frust.me/analyze", true);
-      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-      request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-          var res = JSON.parse(request.responseText);
-          setLevel(res, obj);
-          update.lock = false;
-        }
-      }
-
-      request.send(JSON.stringify({
-        // may be needed for xdom
-        // with older browsers (future)
-        // uuid: frust.uuid,
-        data: content
-      }));
-    }
+  function faveit() {
+    console.log(this, arguments);
   }
 
   function wrap(ta) {
@@ -108,6 +128,9 @@ self.frust = self.frust || {
           <div class='temp'></div>
         </div>
         <div class='thermometer-title'>Waiting... </div>
+        <a class='autocorrect'>Auto-correct</a>
+        <a class='undo'>undo</a>
+        <a class='favorite'>&#9733;</a>
       </div>
     </div>
     */
@@ -117,12 +140,20 @@ self.frust = self.frust || {
         casing = d({"class": "thermometer-casing"}),
           thermo = d({"class": "thermometer"}),
             temp = d({"class": "temp"}),
-          title = d({"class": "thermometer-title"});
+          title = d({"class": "thermometer-title"}),
+          auto = d({"class": "autocorrect", html: "auto-correct"}, "a"),
+          star = d({"title": "Submit as an example", "class": "favorite", html: "&#9733;"}, "a");
 
     // self.ta = ta;
     thermo.appendChild(temp);
     casing.appendChild(thermo);
     casing.appendChild(title);
+    casing.appendChild(auto);
+    casing.appendChild(star);
+
+    auto.onclick = autocorrect;
+    star.onclick = faveit;
+
     thermo.style.width = ta.offsetWidth + "px";
 
     // wrap this 
@@ -167,8 +198,7 @@ self.frust = self.frust || {
       d({
         type: 'text/css',
         rel: 'stylesheet',
-//        href: 'style.css'
-        href: '//frust.me/style.css'
+        href: frust.site + "frust.me/style.css"
       }, 'link')
     );
 
