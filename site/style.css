@@ -44,3 +44,10 @@
   box-shadow: 0 0 15px 15px rgba(255,255,255,0.75);
 }
 
+.frustrometer .favorite {
+  display: none;
+}
+
+.frustrometer .autocorrect {
+  display: none;
+}

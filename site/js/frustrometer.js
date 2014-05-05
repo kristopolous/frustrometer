@@ -45,6 +45,9 @@ self.frust = self.frust || {
       div = d({'class': 'score'});
 
     obj.score = res.score;
+
+    obj.auto.style.display = 'block';
+    obj.star.style.display = 'block';
     obj.title.style.display = (res.score > frust.title_above) ? 'block' : 'none';
     obj.thermo.style.height = res.score + 'em';//(res.score > frust.thermo_above) ? 'block' : 'none';
     obj.temp.style.width = (1 - res.score) * 100  + "%";
@@ -136,40 +139,35 @@ self.frust = self.frust || {
     */
     var 
       wrapper = d({'class': 'frustrometer'}),
-        // textarea
-        casing = d({"class": "thermometer-casing"}),
-          thermo = d({"class": "thermometer"}),
-            temp = d({"class": "temp"}),
-          title = d({"class": "thermometer-title"}),
-          auto = d({"class": "autocorrect", html: "auto-correct"}, "a"),
-          star = d({"title": "Submit as an example", "class": "favorite", html: "&#9733;"}, "a");
+      // textarea
+      casing = d({"class": "thermometer-casing"}),
+        temp = d({"class": "temp"}),
+      ret = {
+        thermo: d({"class": "thermometer"}),
+        title: d({"class": "thermometer-title"}),
+        auto: d({"class": "autocorrect", html: "auto-correct"}, "a"),
+        star: d({"title": "Submit as an example", "class": "favorite", html: "&#9733;"}, "a")
+      };
 
-    // self.ta = ta;
-    thermo.appendChild(temp);
-    casing.appendChild(thermo);
-    casing.appendChild(title);
-    casing.appendChild(auto);
-    casing.appendChild(star);
+    for(var ix in ret) {
+      casing.appendChild(ret[ix]);
+    }
 
-    auto.onclick = autocorrect;
-    star.onclick = faveit;
+    ret.auto.onclick = autocorrect;
+    ret.star.onclick = faveit;
 
     thermo.style.width = ta.offsetWidth + "px";
 
     // wrap this 
     ta.parentNode.replaceChild(wrapper, ta);
-    ta = wrapper.appendChild(ta);
+    ret.ta = wrapper.appendChild(ta);
     wrapper.appendChild(casing);
+    thermo.appendChild(temp);
     thermo.style.height = "0.01em";
 
-    return {
-      score: frust.start_score,
-      wrapper: wrapper,
-      thermo: thermo,
-      temp: temp,
-      ta: ta,
-      title: title
-    } 
+    ret.wrapper = wrapper;
+    ret.score = frust.start_score; 
+    return ret;
   }
 
   function listenTo(ta) {
