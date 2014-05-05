@@ -9,7 +9,7 @@ self.frust = self.frust || {
   title_above: 0.05,
 
   // polling interval for the textareas
-  ival_poll: 200
+  ival_poll: 200,
 
   site: (document.location.host == 'local.frust.me') ? 
     '//local.' : '//www.'
@@ -156,14 +156,14 @@ self.frust = self.frust || {
     ret.auto.onclick = autocorrect;
     ret.star.onclick = faveit;
 
-    thermo.style.width = ta.offsetWidth + "px";
+    ret.thermo.style.width = ta.offsetWidth + "px";
 
     // wrap this 
     ta.parentNode.replaceChild(wrapper, ta);
     ret.ta = wrapper.appendChild(ta);
     wrapper.appendChild(casing);
-    thermo.appendChild(temp);
-    thermo.style.height = "0.01em";
+    ret.thermo.appendChild(temp);
+    ret.thermo.style.height = "0.01em";
 
     ret.wrapper = wrapper;
     ret.score = frust.start_score; 
