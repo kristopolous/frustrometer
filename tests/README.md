@@ -3,6 +3,8 @@ These samples are in the following format
 First line:
 
 (low-end rating) (high-end rating) (target rating)
+
+
 (body)
 
 The ratings are hand picked by me based on the rudeness of the author.
