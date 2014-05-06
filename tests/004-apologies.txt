@@ -1,6 +1,5 @@
-I'm sorry about that ... it's difficult to come up with a reliable test system
-that uses so many moving parts. I'm running another run right now and I'll do
-a visual inspection.  I'll attach it here.  
+0.2 0.4
+I'm sorry about that ... it's difficult to come up with a reliable test system that uses so many moving parts. I'm running another run right now and I'll do a visual inspection.  I'll attach it here.  
 
 I was building a unit-test system previously and I'll go and see if I can 
 finish that to avoid things like this in the future.
