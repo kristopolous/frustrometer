@@ -1,0 +1,12 @@
+0.1 0.3 0.2
+As the one who inadvertently started this, I will add just two comments.
+
+As Statalist has been mentioned, I should say that the difference from the R list is not nearly as great as implied.
+
+It's true that Stata is a commercial product, but also true that many Stata users have contributed both to that product and to extra packages that have been developed. In fact, the total amount of Stata code in the public domain now exceeds that produced by StataCorp. Several of these Stata programmers are among the most active members of Statalist. So, quite often, it really is users' code that is being discussed on Statalist.
+
+I am pleased, as its FAQ maintainer, to hear that Statalist has the reputation of being more polite than the R list. There have also been occasional kerfuffles about quite how friendly it is to new members.
+
+But on the main point, I get the impression here that the rudeness on the R list being complained about is one of tone, as no one has put in evidence crude language or personal attacks. People are inferring disdain or contempt.
+
+Incidentally, some of the contributors to this blog make remarks that would be considered out of order on Statalist!

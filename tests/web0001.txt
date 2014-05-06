@@ -1,0 +1,12 @@
+0.3 0.5 0.4
+I think that there is JD Long got it right in the case of the rude person on the R mailing list that we are all talking about but no one dares name. His responses, although often very informative, are more often awash with contempt for the great unwashed masses.
+
+In this case it just strikes me as a strategy to make yourself feel superior. He is not altruistic in the sense that Andrew meant it.
+
+Over the years many have complained, on and off the list, the R world seems to be divided between those who think that he's right to do this, and those who get pretty riled up about it.
+
+However, the former group miss the point that it is actually possible to tell the ignorant and clueless to RTFM, but politely. I think that educating new posters to post responsibly is a reasonable goal and should be pursued vigorously by the expert users, but it can be done politely. But it isn't. Even admonishing them to do their homework first before posting can be done in a friendly way. And if someone persists in asking questions with easily found answers, just stop replying.
+
+Another thing that expert users forget is beginning, and even intermediate, users don't know how to find information quickly enough in the manuals. The R help pages can be pretty damn inscrutable; you have to have seen a lot of them to know what to expect and how to deal with it.
+
+But I have to admit that the surge of superiority one feels in putting down a lesser being is priceless ;).
