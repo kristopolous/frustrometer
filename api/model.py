@@ -97,6 +97,7 @@ wordmap = {
   'nigger': 'idiot',
   'chink': 'idiot',
   'bitch': 'idiot',
+  'beaner': 'idiot',
   'cocksucker': 'idiot',
   'cunt': 'idiot',
   'fag': 'idiot',
@@ -445,6 +446,7 @@ scorelist = {
 
 # you don't know for sure, that's good!
   'i think': -0.2,
+  'my advice': -0.3,
   'would': -0.15,
   'pretty close': -0.3,
   'i know where': -0.15,
