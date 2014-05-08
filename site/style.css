@@ -16,6 +16,7 @@
   text-align: left;
   display: inline-block;
   color: #333;
+  float:left;
   margin: 0 0 0 1px;
   font-family: Verdana;
 }
@@ -39,10 +40,52 @@
   border-left-color: darkred;
 }
 
+/* these are 'buttons' */
+.frustrometer .thermometer-casing a {
+  margin:0 3px;
+  padding: 3px 8px;
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+  background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+  background-color:#ededed;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  text-indent:0;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:darkblue;
+  cursor:pointer;
+  text-decoration:none;
+  text-align:center;
+}
+
+.frustrometer .thermometer-casing a:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0000a0), color-stop(1, #000040) );
+  background:-moz-linear-gradient( center top, #0000a0 5%, #000040 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0000a0', endColorstr='#000040');
+
+  color:#fff;
+}
+
+.frustrometer .thermometer-casing a:active {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0000a0), color-stop(1, #000040) );
+  background:-moz-linear-gradient( center top, #000000 5%, #000020 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000040', endColorstr='#000040');
+  position:relative;
+  text-shadow: 0 0 1px rgba(255,255,255,0.7);
+  top:1px;
+}
+
 .frustrometer .favorite {
   display: none;
+  float:right;
 }
 
 .frustrometer .autocorrect {
   display: none;
+  float:right;
 }
