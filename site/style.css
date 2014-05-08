@@ -4,20 +4,12 @@
 }
 
 .frustrometer .thermometer {
-  background: #0c0844; /* Old browsers */
-  background: -moz-linear-gradient(left, #0c0844 1%, #1a96d6 12%, #1a96d6 32%, #9b149b 61%, #ed3717 78%, #ed3717 88%, #ffef7c 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(1%,#0c0844), color-stop(12%,#1a96d6), color-stop(32%,#1a96d6), color-stop(61%,#9b149b), color-stop(78%,#ed3717), color-stop(88%,#ed3717), color-stop(100%,#ffef7c)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #0c0844 1%,#1a96d6 12%,#1a96d6 32%,#9b149b 61%,#ed3717 78%,#ed3717 88%,#ffef7c 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, #0c0844 1%,#1a96d6 12%,#1a96d6 32%,#9b149b 61%,#ed3717 78%,#ed3717 88%,#ffef7c 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, #0c0844 1%,#1a96d6 12%,#1a96d6 32%,#9b149b 61%,#ed3717 78%,#ed3717 88%,#ffef7c 100%); /* IE10+ */
-  background: linear-gradient(to right, #0c0844 1%,#1a96d6 12%,#1a96d6 32%,#9b149b 61%,#ed3717 78%,#ed3717 88%,#ffef7c 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0844', endColorstr='#ffef7c',GradientType=1 ); /* IE6-9 */
-
+  background: darkred;
   height: 0.75em;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 4px;
   margin-bottom: 2px;
-  border: 1px solid rgba(30,30,30, 0.4);
+  border: 2px solid darkred;
 }
 
 .frustrometer .thermometer-title {
@@ -38,10 +30,13 @@
 
 .frustrometer .temp {
   float: right;
-  height: 100%;
-  background: rgba(255,255,255,0.75);
-  width: 100%;
-  box-shadow: 0 0 15px 15px rgba(255,255,255,0.75);
+  height: 0px;
+  width: 50%;
+  border: 20px inset;
+  margin-top:-20px;
+  margin-right: -20px;
+  border-bottom-color: white;
+  border-left-color: darkred;
 }
 
 .frustrometer .favorite {
