@@ -109,8 +109,16 @@ self.frust = self.frust || {
 
     post(
       frust.site + "frust.me/analyze",
-      {data: content},
-      function(res) { setLevel(res, obj); }
+      {
+        uid: obj.uid,
+        data: content
+      },
+      function(res) { 
+        if (!obj.uid) {
+          obj.uid = res.uid;
+        }
+        setLevel(res, obj); 
+      }
     );
   }
 
@@ -143,6 +151,10 @@ self.frust = self.frust || {
       casing = d({"class": "thermometer-casing"}),
         temp = d({"class": "temp"}),
       ret = {
+        // the initial uid is always 0, this is the 
+        // signal that we need to assign one.
+        uid: 0,
+
         thermo: d({"class": "thermometer"}),
         title: d({"class": "thermometer-title"}),
         auto: d({"class": "autocorrect", html: "auto-correct"}, "a"),
