@@ -110,12 +110,14 @@ self.frust = self.frust || {
     post(
       frust.site + "frust.me/analyze",
       {
+        c: obj.challenge,
         uid: obj.uid,
         data: content
       },
       function(res) { 
         if (!obj.uid) {
           obj.uid = res.uid;
+          obj.challenge = res.c;
         }
         setLevel(res, obj); 
       }

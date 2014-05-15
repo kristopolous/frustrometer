@@ -10,15 +10,10 @@ import math
 import random
 import struct
 
-def encode(n):
-  data = struct.pack('<Q', n).rstrip('\x00')
-  if len(data)==0:
-      data = '\x00'
-  s = base64.urlsafe_b64encode(data).rstrip('=')
-  return s
-
-def challenge_create():
-  return encode(int(random.random() * 32676))
+def myrand():
+  m_uid = str(uuid.uuid4())
+  m_uid = m_uid.replace('-','').upper()
+  return base64.b64encode(base64.b16decode(m_uid)).replace('=','')
 
 def challenge(uid, c):
   return True
@@ -39,6 +34,12 @@ def application(environ, start_response):
       except ValueError:
         return [json.dumps({"error": "I need JSON, with your input as the value to the data key"})]
 
+# The challenge makes sure that UUIDs don't get stomped
+# by people who want to hijack an existing comment.
+#
+# Both the publically accessible uuid and the privately
+# stored challenge has to match before anything is updated
+
       my_challenge = 0
 
       if 'uid' in content and content['uid'] != 0:
@@ -48,8 +49,8 @@ def application(environ, start_response):
           my_challenge = content['c']
 
       else:
-        my_guid = str(uuid.uuid4())
-        my_challenge = challenge_create()
+        my_guid = myrand()
+        my_challenge = myrand()
 
       if 'id' in content and content['id'] == 'fave':
         log.faveit(raw)
@@ -57,6 +58,7 @@ def application(environ, start_response):
         res = model.analyze(content['data'])
 
       res['uid'] = my_guid
+      res['c'] = my_challenge
 
       return [json.dumps(res)]
 
