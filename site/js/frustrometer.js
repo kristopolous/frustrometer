@@ -46,11 +46,13 @@ self.frust = self.frust || {
 
     obj.score = res.score;
 
-    obj.auto.style.display = 'block';
-    obj.star.style.display = 'block';
+    for (var which in {controls:0, auto:0, star:0}) {
+      obj[which].style.display = 'block';
+    }
+
     obj.title.style.display = (res.score > frust.title_above) ? 'block' : 'none';
     obj.thermo.style.height = res.score + 'em';//(res.score > frust.thermo_above) ? 'block' : 'none';
-    obj.temp.style.width = (1 - res.score) * 100  + "%";
+    obj.temp.style.width = (res.score) * 100  + "%";
     obj.title.innerHTML = res.snark;
 
     if(deltaScore > 0) {
@@ -152,25 +154,34 @@ self.frust = self.frust || {
       // textarea
       casing = d({"class": "thermometer-casing"}),
         temp = d({"class": "temp"}),
-      ret = {
-        // the initial uid is always 0, this is the 
-        // signal that we need to assign one.
-        uid: 0,
 
+      auto = d({"class": "autocorrect", html: "auto-correct"}, "a"),
+      star = d({"title": "Submit as an example", "class": "favorite", html: "&#9733;"}, "a"),
+
+      ret = {
         thermo: d({"class": "thermometer"}),
-        title: d({"class": "thermometer-title"}),
-        auto: d({"class": "autocorrect", html: "auto-correct"}, "a"),
-        star: d({"title": "Submit as an example", "class": "favorite", html: "&#9733;"}, "a")
+        controls: d({'class': 'controls'}),
+        title: d({"class": "thermometer-title"})
       };
 
     for(var ix in ret) {
       casing.appendChild(ret[ix]);
     }
 
+    ret.controls.appendChild(auto);
+    ret.controls.appendChild(star);
+
+    // the initial uid is always 0, this is the 
+    // signal that we need to assign one.
+    ret.star = star;
+    ret.auto = auto;
+    ret.casing = casing;
+    ret.uid = 0;
     ret.auto.onclick = autocorrect;
     ret.star.onclick = faveit;
+    ret.temp = temp;
 
-    ret.thermo.style.width = ta.offsetWidth + "px";
+    ret.casing.style.width = ta.offsetWidth + "px";
 
     // wrap this 
     ta.parentNode.replaceChild(wrapper, ta);
@@ -185,7 +196,19 @@ self.frust = self.frust || {
   }
 
   function listenTo(ta) {
-    var content = false, obj = wrap(ta);
+    var content = false, obj = wrap(ta), ct = 0;
+
+/*
+    obj.animIval = setInterval(function() {
+      ct++;
+
+      var float = (1 + Math.cos( 
+          Math.PI * (ct % 50 / 25) 
+        )) * 0.5;
+
+      obj.temp.style.background = 'rgba(139, 0, 0, ' + (float * obj.score * 0.5 + 0.5) + ')';
+    }, 50);
+*/
 
     setInterval(function() {
       var text = obj.ta.value;

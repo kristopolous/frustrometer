@@ -3,22 +3,30 @@
   display:inline-block;
 }
 
+.frustrometer .controls {
+  display: none;
+  float: right;
+  margin-top: 6px;
+  width: 200px;
+}
+
 .frustrometer .thermometer {
-  background: darkred;
+  background: white;
   height: 0.75em;
   overflow: hidden;
   border-radius: 4px;
   margin-bottom: 2px;
   border: 2px solid darkred;
+  width: 100%;
 }
 
 .frustrometer .thermometer-title {
   text-align: left;
   display: inline-block;
   color: #333;
-  float:left;
-  margin: 0 0 0 1px;
+  margin: 8px 200px 0 1px;
   font-family: Verdana;
+  font-size: 90%;
 }
 
 .frustrometer .score {
@@ -30,14 +38,10 @@
 }
 
 .frustrometer .temp {
-  float: right;
-  height: 0px;
-  width: 50%;
-  border: 20px inset;
-  margin-top:-20px;
-  margin-right: -20px;
-  border-bottom-color: white;
-  border-left-color: darkred;
+  background: rgba(139,0,0,1);
+  height: 100%;
+  width: 0%;
+  border-radius: 0 8px 8px 0;
 }
 
 /* these are 'buttons' */
