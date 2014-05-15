@@ -4,7 +4,7 @@ require 'bundler'
 Bundler.require
 
 # This is what will be emitted to the screen
-parsed = {:idList => []}
+parsed = {:entryList => []}
 
 File.open('7748857', 'r') { | content |
   raw = content.read
@@ -22,7 +22,7 @@ File.open('7748857', 'r') { | content |
   end
 
 # We also need to note all the item ids we see here.
-  doc.css('.comhead').map { | x |
+  doc.css('.comhead').map { | x |   
   # The second item is the link
     link = x.css('a')[1]
 
@@ -30,7 +30,14 @@ File.open('7748857', 'r') { | content |
       raise "The link should be called 'link'. Aborting"
     end
 
-    parsed[:idList] << link.attr('href').split('=').pop.to_i 
+    comment = x.parent.next.next.children[0].to_s
+    user = x.css('a').first
+
+    parsed[:entryList] << {
+      :comment => comment,
+      :user => user.inner_html,
+      :id => link.attr('href').split('=').pop.to_i 
+    }
   }
 }
 
