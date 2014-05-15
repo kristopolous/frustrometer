@@ -1,3 +1,11 @@
+/*!
+ * frustrometer JS library
+ * http://frustrometer.com
+ *
+ * Copyright 2014, Chris McKenzie
+ * MIT License
+ */
+
 self.frust = self.frust || {
   // The cut off before showing the thermometer
   thermo_above: 0.30,
@@ -17,23 +25,32 @@ self.frust = self.frust || {
 
 (function(){  
 
-  self.frust.setuuid = function(uuid) {
-    self.frust.uuid = uuid;
-  }
-
   // a Very very cheap dom builder.
-  function d(attrib, type) {
+  function _d(attrib, type) {
     var obj = document.createElement(type || 'div'), key;
 
-    for(key in attrib) {
-      if(key == 'html') {
-        obj.innerHTML = attrib[key];
-      } else {
-        obj.setAttribute(key, attrib[key]);
+    // if the first attrib is a string, then 
+    // we just make this a class and bail -
+    // this is the most common use-case
+    if (attrib.length) {
+      obj.setAttribute('class', attrib); 
+    } else {
+      // Otherwise we assign things the hard way
+      for(key in attrib) {
+        if(key == 'html') {
+          obj.innerHTML = attrib[key];
+        } else {
+          obj.setAttribute(key, attrib[key]);
+        }
       }
     }
 
     return obj;
+  }
+
+  // appends arg2 to arg1 returning 
+  function _ap(obj, child) {
+    return obj.appendChild(child);
   }
 
   function setLevel(res, obj) {
@@ -42,7 +59,7 @@ self.frust = self.frust || {
       sum = 0,
       color = Math.min(255, Math.abs(deltaScore)),
       ix = start,
-      div = d({'class': 'score'});
+      div = _d('score');
 
     obj.score = res.score;
 
@@ -66,7 +83,7 @@ self.frust = self.frust || {
     div.style.fontSize = Math.max(1, Math.sqrt(color / 20)) + "em";
 
     if(Math.round(deltaScore / 7) != 0) {
-      obj.wrapper.appendChild(div);
+      _ap(obj.wrapper, div);
       var ival = setInterval(function(){
         ix--;
         sum += ix;
@@ -104,14 +121,8 @@ self.frust = self.frust || {
   }
 
   function update(content, obj) {
-    // We can't move forward without a uuid regardless. (future)
-    // if (!self.frust.uuid) {
-    //  return;
-    // }
-
     post(
-      frust.site + "frust.me/analyze",
-      {
+      frust.site + "frust.me/analyze", {
         c: obj.challenge,
         uid: obj.uid,
         data: content
@@ -130,73 +141,60 @@ self.frust = self.frust || {
     console.log(this, arguments);
   }
 
-  function faveit() {
-    console.log(this, arguments);
-  }
-
   function wrap(ta) {
-    /*
-    <div class='frustrometer'>
-      <textarea></textarea>
-      <div class='thermometer-casing'>
-        <div class='thermometer'>
-          <div class='temp'></div>
-        </div>
-        <div class='thermometer-title'>Waiting... </div>
-        <a class='autocorrect'>Auto-correct</a>
-        <a class='undo'>undo</a>
-        <a class='favorite'>&#9733;</a>
-      </div>
-    </div>
-    */
-    var 
-      wrapper = d({'class': 'frustrometer'}),
-      // textarea
-      casing = d({"class": "thermometer-casing"}),
-        temp = d({"class": "temp"}),
+    var ix,
+        r = {
+        wrapper: _d('frustrometer'),
+          casing: _d("thermometer-casing"),
 
-      auto = d({"class": "autocorrect", html: "auto-correct"}, "a"),
-      star = d({"title": "Submit as an example", "class": "favorite", html: "&#9733;"}, "a"),
+            thermo: _d("thermometer"),
+              temp: _d("temp"),
 
-      ret = {
-        thermo: d({"class": "thermometer"}),
-        controls: d({'class': 'controls'}),
-        title: d({"class": "thermometer-title"})
+            title: _d("thermometer-title"),
+
+            controls: _d('controls'),
+              star: _d({
+                "class": "favorite", 
+                title: "Leader Board", 
+                target: "_blank",
+                href: frust.site + "frust.me/leaders",
+                html: "&#9733;"
+              }, "a"),
+
+              auto: _d({"class": "autocorrect", html: "auto-correct"}, "a"),
+
+        // the initial uid is always 0, this is the 
+        // signal that we need to assign one.
+        uid: 0,
+        score: frust.start_score
       };
 
-    for(var ix in ret) {
-      casing.appendChild(ret[ix]);
+    for(ix in {thermo:0, controls:0, title:0}) {
+      _ap(r.casing, r[ix]);
     }
 
-    ret.controls.appendChild(auto);
-    ret.controls.appendChild(star);
+    for(ix in {auto:0, star:0}) {
+      _ap(r.controls, r[ix]);
+    }
 
-    // the initial uid is always 0, this is the 
-    // signal that we need to assign one.
-    ret.star = star;
-    ret.auto = auto;
-    ret.casing = casing;
-    ret.uid = 0;
-    ret.auto.onclick = autocorrect;
-    ret.star.onclick = faveit;
-    ret.temp = temp;
-
-    ret.casing.style.width = ta.offsetWidth + "px";
+    r.auto.onclick = autocorrect;
+    r.casing.style.width = ta.offsetWidth + "px";
 
     // wrap this 
-    ta.parentNode.replaceChild(wrapper, ta);
-    ret.ta = wrapper.appendChild(ta);
-    wrapper.appendChild(casing);
-    ret.thermo.appendChild(temp);
-    ret.thermo.style.height = "0.01em";
+    ta.parentNode.replaceChild(r.wrapper, ta);
+    r.ta = _ap(r.wrapper, ta);
 
-    ret.wrapper = wrapper;
-    ret.score = frust.start_score; 
-    return ret;
+    _ap(r.wrapper, r.casing);
+    _ap(r.thermo, r.temp);
+
+    return r;
   }
 
   function listenTo(ta) {
-    var content = false, obj = wrap(ta), ct = 0;
+    var 
+      content = false, 
+      obj = wrap(ta), 
+      ct = 0;
 
 /*
     obj.animIval = setInterval(function() {
@@ -229,8 +227,9 @@ self.frust = self.frust || {
   window.onload = function() {
     var taList = document.getElementsByTagName('textarea');
 
-    document.body.appendChild(
-      d({
+    _ap(
+      document.body,
+      _d({
         type: 'text/css',
         rel: 'stylesheet',
         href: frust.site + "frust.me/style.css"

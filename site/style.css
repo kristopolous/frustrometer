@@ -12,7 +12,7 @@
 
 .frustrometer .thermometer {
   background: white;
-  height: 0.75em;
+  height: 0.01em;
   overflow: hidden;
   border-radius: 4px;
   margin-bottom: 2px;
