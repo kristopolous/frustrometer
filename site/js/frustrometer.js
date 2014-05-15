@@ -12,7 +12,7 @@ self.frust = self.frust || {
   ival_poll: 200,
 
   site: (document.location.host == 'local.frust.me') ? 
-    '//local.' : '//www.'
+    '//local.' : '//'
 };
 
 (function(){  
