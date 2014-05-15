@@ -84,12 +84,6 @@
   top:1px;
 }
 
-.frustrometer .favorite {
-  display: none;
-  float:right;
-}
+.frustrometer .favorite { }
 
-.frustrometer .autocorrect {
-  display: none;
-  float:right;
-}
+.frustrometer .autocorrect { }
