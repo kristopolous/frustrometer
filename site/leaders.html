@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frustrometer LeaderBoard</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Old+Standard+TT' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Vidaloka' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <style> 
+      body {background: url('img/subtle_grunge.png');color:#000}
+      *{line-height:1.15em}
+      a { color:darkblue}
+      .bend { 
+          display:inline-block;
+          font-size:0.6em;
+          color:#333;
+      }
+      tt{font-size:0.75em;font-family: 'Droid Sans Mono', monospace;background:rgba(63,73,83,0.65);color:#fff;padding:0.1em 0.5em}
+      .imgwrap {margin-top:1.5em}
+      .imgwrap > * { display: inline-block; text-align: left}
+      .imgwrap .text {width: 14em}
+      .imgwrap .text small{color:#111;font-family: 'Oleo Script', cursive;
+        transform:rotate(7deg);display:block;text-align:center}
+
+      #topnav { background: rgba(19,168,158, 0.2); padding-bottom:0.45em}
+      #topnav a,
+      .imgwrap h2 { margin-bottom: 0.25em;padding-bottom:0.35em;margin-top:0;border-bottom:1px solid rgba(0,0,0,0.4)}
+      #topnav li { display: inline-block;font-size:1.5em; margin: 0 1em }
+
+      h3{line-height:1.25em;}
+      .intro h3{line-height:1.5em;}
+      .intro h1{font-size:4.5em;margin-top:0.3em;border-bottom:4px double #333;display:inline-block;padding-bottom:0.5em;line-height:1.05em}
+      .intro b{letter-spacing: 0.1em;color:rgba(0,0,0,0.8)}
+      .intro {text-align:center;line-height:1.25em; font-family: 'Playfair Display SC', serif; background: rgba(242,231,218,0.5);margin-bottom:0.5em;padding-bottom:3.5em;border-bottom:2em solid rgba(19,168,158, 0.2);padding-top:0.5em}
+      .intro h4{line-height:1.5em}
+      .intro h4 big{font-size:1.3em}
+      .intro em{font-size:1.15em;margin-right:0.25em}
+      #links {border-top:0.5em solid rgba(163,163,163,0.3);font-size:1.5em;background:rgba(63,73,83,0.1);font-family:'Old Standard TT',serif;color:#000;padding-top:1em}
+      #links h2 {font-size: 1.5em;border-bottom:2px groove rgba(140,140,140,0.6);padding-bottom:0.35em;text-shadow:0 1px 1px rgba(0,0,0,0.4)}
+      #links p {font-family: 'Playfair Display', serif}
+      #links big { font-size:1.35em }
+      #demo { font-family:'Old Standard TT',serif;font-size: 1.5em;border-bottom:1em ridge rgba(246,203,81, 0.45);padding-bottom:1em}
+      #demo p {color: rgba(0,0,0,0.85)}
+      #demo em {font-size:1.25em;font-family: 'Oleo Script', cursive;font-style:normal}
+      #demo h2 {font-family: 'Lobster', cursive;font-size:2em;margin-bottom:0.5em}
+      #demo small{display:block;font-size:0.75em}
+      #pitch{font-size:1.5em;font-family: 'Vidaloka', serif;padding: 2em 0;color:#111;text-align:center;background:rgba(246,203,81,0.3);}
+      #pitch .imgwrap {margin-bottom:1.5em}
+      #pitch .imgwrap .text {width: 11em}
+      #pitch p { margin: 0 0 0.25em 0}
+      #pitch h1{margin: 1em 0;}
+      #pitch h5{font-size:1.5em;line-height:1.35em;; font-family: 'Playfair Display SC'}
+      #pitch h4{font-size:1.25em;line-height:1.25em}
+      #pitch h2{text-align:center;margin-bottom:0.25em;padding-bottom:0.25em;font-size:2.5em;text-shadow: 1px 1px 2px rgb(63, 73, 83)}
+      textarea { padding: 0.5em; font-size: 1.25em; width: 20em; height: 12em}
+      footer{text-align:center}
+      .votewrap a {display: block;cursor:pointer;border:3px solid transparent;padding:5px;border-radius:12px}
+      .votewrap a:hover {border-color: rgba(0,0,0,0.8);}
+      .votedown {margin-top: 5px}
+
+      ul,li{list-style:none}
+@media (max-width: 669px) {
+      .intro h3{font-size:1.5em}
+      .intro h1{font-size:2em}
+      textarea { width: 90%; height:8em }
+}
+    </style> 
+      
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="intro">
+      <div class="container" style=text-align:center> 
+        <h1><span class='bend'>The</span> Leading<br><b>Frustrometors</b></h1>
+        <ul id="topnav">
+            <li><a>To-day's</a></li>
+            <li><a>All time</a></li>
+            <li><a>New Comers</a></li>
+        </ul>
+        <div class='imgwrap'>
+          <div class="votewrap">
+            <a class="voteup" title="Approve of this"><img src="img/up-40.png"></a>
+            <a class="votedown" title="Scoff at this"><img src="img/down-40.png"></a>
+          </div>
+          <div class='text'>
+            <h2>To-daysTHIS Magnificent Technology</h2>
+            <h4>Tells You How <big>Appropriate</big><br> <b>Your</b> Messages Are<br> <em>While </em>You Type Them!</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="demo"> 
+      <div class="container" style='text-align:center'>
+        <h2>Try it out!</h2>
+        <p>Type <em>inappropriate</em> things in this box.</p>
+        <textarea></textarea>
+      </div>
+    </div>
+
+    <div id='pitch'>
+      <div class='imgwrap'>
+        <img src=img/easy.png>
+        <div class='text'>
+          <H2>Flexible <small>~ and ~</small> Fast!</h2>
+          <h4>Relax knowing your messages are safe of slander.</h4>
+        </div>
+      </div>
+      <p>Do <b>know</b> the Meter is <br><big>Affordable</big> and <big>Easy</big>.</p>
+      <img src=img/fleur.png>
+      <h5>You Can Do It.</h5>
+      <h3>For a Limited Time<br>The <em>Extraordinary</em> Meter<br>Is Free of Charge!</h3>
+    </div>
+
+    <div id="links">
+      <div class="container"> 
+        <div class="row">
+
+          <div class="col-md-4">
+            <h2>On your site</h2>
+            <p><big>Include</big> this snappy <a href="/js/frustrometer.js">javascript</a> and watch all of your <tt>&lt;textareas&gt;</tt> get magically frustrometered!</p>
+          </div>
+
+          <div class="col-md-4">
+            <h2>In your browser</h2>
+            <p><big>Install</big> the <a href="/plugin">plugin</a> and have the meter on the go.</p>
+            <p>(Available on all respectable browsers of distinguished taste.)</p>
+          </div>
+
+          <div class="col-md-4">
+            <h2>In your software</h2>
+            <p><big>Make</big> a curl call off to the API.</p>
+            <p>Use our fabulous trend-setting domain. Try
+            <tt>curl frust.me/analyze --data '{"data":"rtfm"}'</tt></p>
+          </div>
+        </div>
+
+      <hr>
+
+      <footer>
+        <p>3-Clause BSD / <a href="https://github.com/kristopolous/frustrometer">On Github</a> \ Pull Requests Welcome</p>
+      </footer>
+      </div>
+    </div>
+
+    <script src="js/frustrometer.js"></script>
+  </body>
+</html>
