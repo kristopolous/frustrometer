@@ -62,11 +62,14 @@
         letter-spacing: 0.2em;
         float: right;
       }
+
       .entry .text .copy { 
         vertical-align: top;
         line-height:1.35em;
         width: 47%; 
-        display: inline-block; text-align: justify}
+        display: inline-block; 
+        text-align: justify
+      }
 
       .entry .text .lowest { margin-right: 5% }
 
@@ -78,7 +81,9 @@
         font-family: 'Oleo Script', cursive;
         -webkit-transform:rotate(-8deg);
         transform:rotate(-8deg);
-        display:block;text-align:center}
+        display:block;
+        text-align:center
+      }
 
 
       .fleur { 
@@ -93,11 +98,20 @@
         border-bottom:2px ridge rgba(174,174,174,0.6);
       }
 
-      #topnav {  padding-bottom:0.45em}
+      #topnav {
+        padding-bottom:0.45em
+      }
       #topnav a{ 
         letter-spacing: 0.2em;
-        margin-bottom: 0.25em;padding-bottom:0.35em;margin-top:0;border-bottom:1px solid rgba(0,0,0,0.4)}
-      #topnav li { display: inline-block;font-size:1.5em; margin: 0 1em }
+        margin-bottom: 0.25em;
+        padding-bottom:0.35em;
+        margin-top:0;
+        border-bottom:1px solid rgba(0,0,0,0.4)}
+      #topnav li {
+        display: inline-block;
+        font-size:1.5em;
+        margin: 0 1em;
+      }
 
       #topnav a:hover{ 
         cursor:pointer;
@@ -106,8 +120,14 @@
       }
 
       .intro {
+        border-bottom:2em solid rgba(19,168,158, 0.2);
         padding-left:50px;
-        text-align:center;line-height:1.25em; font-family: 'Playfair Display SC', serif; background: rgba(242,231,218,0.5);margin-bottom:0.5em;border-bottom:2em solid rgba(19,168,158, 0.2);padding-top:0.5em}
+        text-align:center;
+        line-height:1.25em;
+        font-family: 'Playfair Display SC', serif;   
+        background: rgba(242,231,218,0.5);
+        margin-bottom:0.5em;
+        padding-top:0.5em}
       .intro h3{line-height:1.5em;}
       .intro h1{font-size:4.5em;margin-top:0.3em;border-bottom:4px double #333;display:inline-block;padding-bottom:0.5em;line-height:1.05em}
       .intro b{letter-spacing: 0.1em;color:rgba(0,0,0,0.8)}
@@ -119,13 +139,87 @@
         float: left;
         width: 60px;
       }
-      .votewrap a {display: block;cursor:pointer;border:3px double transparent;padding:5px;border-radius:12px}
+      .votewrap a {
+        display: block;
+        cursor: pointer;
+        border:3px double transparent;
+        padding:5px;
+        border-radius:12px;
+        width:60px;
+        height:67px;
+      }
+      .voteup {
+        background: url('img/up-40.png') 5px 5px no-repeat;
+      }.votedown {
+        background: url('img/down-40.png') 5px 7px no-repeat;
+      }
+
       .votewrap a:hover {border-color: rgba(0,0,0,0.8);}
 
-      ul,li{list-style:none}
+      ul,li{list-style:none;margin:0;padding:0}
 @media (max-width: 669px) {
+      .entry .author,
+      h3{
+        margin:0 0 0.35em;
+        font-size:1.5em;
+        color:black;
+        letter-spacing: 0.1em;
+      }
+      .intro{ 
+        padding: 0;
+        margin: 0;
+      }
       .intro h3{font-size:1.5em}
       .intro h1{font-size:2em}
+
+      .votewrap {
+        width: 45px;
+      }
+      .entry .text {
+        margin-left: 58px;
+      }
+      .votewrap a {
+        width:47px;
+        height:54px;
+      }
+      #topnav {
+        font-size:0.7em;
+        margin:0 -0.75em;
+      }
+      #topnav a{ 
+        letter-spacing: 0.05em;
+        padding-bottom:0.35em;
+        margin-top:0;
+        border-bottom:1px solid rgba(0,0,0,0.4)}
+      #topnav li {
+        font-size:1.5em;
+        padding: 0;
+        margin: 0 0.4em;
+      }
+      .voteup {
+        background: url('img/up-30.png') 5px 5px no-repeat;
+      }.votedown {
+        background: url('img/down-30.png') 5px 7px no-repeat;
+      }
+
+      .entry .text .copy { 
+        width: 97%; 
+      }
+
+      .entry .score{
+        margin:0.25em 0;
+      }
+      .fleur { 
+        display: none
+      }
+      .entry .date {
+        margin: 0;
+        letter-spacing: 0.1em;
+        float: right;
+      }
+      .intro {
+        border-bottom-width:0.5em;
+      }
 }
     </style> 
       
@@ -152,9 +246,9 @@
 
         <div class='entry'>
           <div class="votewrap">
-            <a class="voteup" title="Approve of this"><img src="img/up-40.png"></a>
+            <a class="voteup" title="Approve of this"></a>
             <span class='score'>123</span>
-            <a class="votedown" title="Scoff at this"><img src="img/down-40.png"></a>
+            <a class="votedown" title="Scoff at this"></a>
           </div>
           <div class='text'>
             <a class='date'>13th of May, 2014</a>
@@ -175,9 +269,9 @@
             <img src=img/fleur.png>
           </div>
           <div class="votewrap">
-            <a class="voteup" title="Approve of this"><img src="img/up-40.png"></a>
+            <a class="voteup" title="Approve of this"></a>
             <span class='score'>3,421</span>
-            <a class="votedown" title="Scoff at this"><img src="img/down-40.png"></a>
+            <a class="votedown" title="Scoff at this"></a>
           </div>
           <div class='text'>
             <a class='date'>22nd of March, 2014</a>
