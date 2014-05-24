@@ -19,6 +19,7 @@
       body {background: url('img/subtle_grunge.png');color:#000}
       *{line-height:1.15em}
       a { color:darkblue}
+      a:hover {color: rgba(0,0,96,1);text-shadow:0 0 1px rgba(128,128,255,0.4)}
       .bend { 
           display:inline-block;
           font-size:0.6em;
@@ -69,6 +70,30 @@
         font-size:1.15em;
         text-shadow:0 0 1px rgba(0,0,0,0.5);
       }
+      p#freeinstruction { 
+        color: rgba(0,0,0,0.7);
+        text-align: center;
+        font-size: 0.8em;
+        margin-top: 1.2em;
+        border: 4px double rgba(128,128,128,0.5);
+        border-radius: 6px;
+      }
+      .deal {
+        padding: 0.35em 0;
+        margin-top: 1em;
+        border-radius: 6px;
+        border: 4px double rgba(0,0,128,0.3);
+        display: block;
+        cursor:pointer;
+        text-align: center;
+      }
+      .deal:hover{
+        border-color: rgba(0,0,128,1);
+        text-decoration: none;
+        background:rgba(0,0,216,0.1);
+        color:rgba(0,0,96,1);
+      }
+      #links a,
       #business a {
         font-size: 1.1em;
         font-weight: normal;
@@ -76,8 +101,9 @@
       }
       textarea { padding: 0.5em; font-size: 1.25em; width: 20em; height: 12em}
       footer{text-align:center;margin-top:2em;background:rgba(255,255,255,0.5);padding: 0.5em 0;font-size:0.75em}
-      .or { width: 60px; display:inline-block;margin-top:4em}
+      .or { width: 60px; display:inline-block;margin:1.5em 0.25em}
       .pay, .free {vertical-align: top; width: 250px;display:inline-block;text-align:left }
+      .free {text-align: right}
 
 @media (max-width: 669px) {
       .intro h3{font-size:1.5em}
@@ -127,16 +153,18 @@
       <img src=img/fleur.png>
       <h5>We Have Two Handsome Options.</h5>
       <div class="free">
-        <h3>For Free</h3><h4>The Catch</h4>
-        <p>Your entries <b>Become Public</b> and <em>votable to all</em> in<br> <a href="/leaders">The Great Frusty Competition!</a></p>
+        <h3>Free</h3><h4>The Catch</h4>
+        <p>Your entries <b>Are Public</b> and <em>votable to all</em> in<br> <a href="/leaders">The Great Frusty Competition!</a></p>
+        <p id="freeinstruction">No signup needed!<br>Downloads are below!</p>
       </div>
       <div class="or">
       ~ or ~
       </div>
       <div class="pay">
         <h3>$5.00 per Month</h3>
-        <h4>The Deal</h4>
-        <p>Your entries stay private and yours. They are never recorded or made public.</p>
+        <h4>The Deal!</h4>
+        <p>Your entries <b>Are Private</b> and yours. They <em>are never logged</em> and never made public.</p>
+        <a class="deal">Get The Deal!</a>
       </div>
 
     </div>
@@ -148,13 +176,13 @@
 
           <div class="col-md-4">
             <h2>On your site</h2>
-            <p><big>Include</big> this snappy <a href="/js/frustrometer.js">javascript</a> and watch all of your <tt>&lt;textareas&gt;</tt> get magically frustrometered!</p>
+            <p><big>Include</big> the snappy javascript and watch all of your <tt>&lt;textareas&gt;</tt> get magically frustrometered! <a href="/js/frustrometer.js">Get the javascript</a>.</p>
           </div>
 
           <div class="col-md-4">
             <h2>In your browser</h2>
-            <p><big>Install</big> the <a href="/plugin">plugin</a> and have the meter on the go.</p>
-            <p>(Available on all respectable browsers of distinguished taste.)</p>
+            <p><big>Install</big> the plugin and have the meter on the go.</p>
+<a>for <em>Firefox</em></a> or <a>for <em>Chrome</em></a>
           </div>
 
           <div class="col-md-4">
