@@ -42,8 +42,9 @@
       .intro em{font-size:1.15em;margin-right:0.25em}
       #links {border-top:0.5em solid rgba(163,163,163,0.3);font-size:1.5em;background:rgba(63,73,83,0.1);font-family:'Old Standard TT',serif;color:#000;padding-top:1em}
       #links h2 {font-size: 1.5em;border-bottom:2px groove rgba(140,140,140,0.6);padding-bottom:0.35em;text-shadow:0 1px 1px rgba(0,0,0,0.4)}
-      #links p {font-family: 'Playfair Display', serif}
+      #links p {font-family: 'Playfair Display', serif; line-height: 1.35em}
       #links big { font-size:1.35em }
+      #links .breaker { text-align: center; border-top: 1px solid rgba(0,0,0,0.4);margin-top:1em;padding-top:1em}
       #demo { font-family:'Old Standard TT',serif;font-size: 1.5em;border-bottom:1em ridge rgba(246,203,81, 0.45);padding-bottom:1em}
       #demo p {color: rgba(0,0,0,0.85)}
       #demo em {font-size:1.25em;font-family: 'Oleo Script', cursive;font-style:normal}
@@ -58,10 +59,26 @@
       #pitch h4{font-size:1.25em;line-height:1.25em}
       #pitch h3{font-size:1.5em;text-shadow:1px 1px 2px rgba(0,0,0,0.5);border-bottom:3px double rgba(0,0,0,0.2);padding-bottom:0.25em}
       #pitch h2{text-align:center;margin-bottom:0.25em;padding-bottom:0.25em;font-size:2.5em;text-shadow: 1px 1px 2px rgb(63, 73, 83)}
+      #business {
+        text-align: center;
+      }
+      #business h1{
+        margin-bottom: 0.75em
+      }
+      #business big{
+        font-size:1.15em;
+        text-shadow:0 0 1px rgba(0,0,0,0.5);
+      }
+      #business a {
+        font-size: 1.1em;
+        font-weight: normal;
+        font-family: 'Lobster', cursive;
+      }
       textarea { padding: 0.5em; font-size: 1.25em; width: 20em; height: 12em}
-      footer{text-align:center}
+      footer{text-align:center;margin-top:2em;background:rgba(255,255,255,0.5);padding: 0.5em 0;font-size:0.75em}
       .or { width: 60px; display:inline-block;margin-top:4em}
       .pay, .free {vertical-align: top; width: 250px;display:inline-block;text-align:left }
+
 @media (max-width: 669px) {
       .intro h3{font-size:1.5em}
       .intro h1{font-size:2em}
@@ -126,7 +143,7 @@
 
     <div id="links">
       <div class="container"> 
-      <h1>You Can Use the Frustrometer:</h1>
+      <h1>Personally Use the Frustrometer:</h1>
         <div class="row">
 
           <div class="col-md-4">
@@ -148,14 +165,19 @@
           </div>
         </div>
 
-      <hr>
-      <p>We can also install the frustrometer locally to monitor outgoing email and other correspondances for Your Entire Business (postfix, sendmail, exchange, openfire and sms gateways are available). Send us an email for
-      further information about this exciting custom service.</p>
-
-      <footer>
-        <p>3-Clause BSD / <a href="https://github.com/kristopolous/frustrometer">On Github</a> \ Pull Requests Welcome</p>
-      </footer>
+      <div class='breaker'>
+        <img src=img/fleur.png>
       </div>
+      <div id='business'>
+        <h1>For Your Business</h1>
+        <p><big>Locally install</big> The Frustrometer to monitor <em>Outgoing Email</em> and <em>Other Correspondances</em>.</p>
+        <p>For more about this exciting custom service, <big>Send an email</big> to <a href="mailto:hautecouture@frust.me">HauteCouture@frust.me</a>.</p>
+      </div>
+    </div>
+
+    <footer>
+    &copy; 2014, frustrometer. Legal Information | Contact
+    </footer>
     </div>
 
     <script src="js/frustrometer.js"></script>
