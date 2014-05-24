@@ -8,7 +8,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*"],
-      "js": ["frust.js"]
+      "js": ["frustrometer.js"]
     }
   ],
   "browser_action": {

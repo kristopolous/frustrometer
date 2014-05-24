@@ -56,9 +56,12 @@
       #pitch h1{margin: 1em 0;}
       #pitch h5{font-size:1.5em;line-height:1.35em;; font-family: 'Playfair Display SC'}
       #pitch h4{font-size:1.25em;line-height:1.25em}
+      #pitch h3{font-size:1.5em;text-shadow:1px 1px 2px rgba(0,0,0,0.5);border-bottom:3px double rgba(0,0,0,0.2);padding-bottom:0.25em}
       #pitch h2{text-align:center;margin-bottom:0.25em;padding-bottom:0.25em;font-size:2.5em;text-shadow: 1px 1px 2px rgb(63, 73, 83)}
       textarea { padding: 0.5em; font-size: 1.25em; width: 20em; height: 12em}
       footer{text-align:center}
+      .or { width: 60px; display:inline-block;margin-top:4em}
+      .pay, .free {vertical-align: top; width: 250px;display:inline-block;text-align:left }
 @media (max-width: 669px) {
       .intro h3{font-size:1.5em}
       .intro h1{font-size:2em}
@@ -105,12 +108,25 @@
       </div>
       <p>Do <b>know</b> the Meter is <br><big>Affordable</big> and <big>Easy</big>.</p>
       <img src=img/fleur.png>
-      <h5>You Can Do It.</h5>
-      <h3>For a Limited Time<br>The <em>Extraordinary</em> Meter<br>Is Free of Charge!</h3>
+      <h5>We Have Two Handsome Options.</h5>
+      <div class="free">
+        <h3>For Free</h3><h4>The Catch</h4>
+        <p>Your entries <b>Become Public</b> and <em>votable to all</em> in<br> <a href="/leaders">The Great Frusty Competition!</a></p>
+      </div>
+      <div class="or">
+      ~ or ~
+      </div>
+      <div class="pay">
+        <h3>$5.00 per Month</h3>
+        <h4>The Deal</h4>
+        <p>Your entries stay private and yours. They are never recorded or made public.</p>
+      </div>
+
     </div>
 
     <div id="links">
       <div class="container"> 
+      <h1>You Can Use the Frustrometer:</h1>
         <div class="row">
 
           <div class="col-md-4">
@@ -133,6 +149,8 @@
         </div>
 
       <hr>
+      <p>We can also install the frustrometer locally to monitor outgoing email and other correspondances for Your Entire Business (postfix, sendmail, exchange, openfire and sms gateways are available). Send us an email for
+      further information about this exciting custom service.</p>
 
       <footer>
         <p>3-Clause BSD / <a href="https://github.com/kristopolous/frustrometer">On Github</a> \ Pull Requests Welcome</p>
