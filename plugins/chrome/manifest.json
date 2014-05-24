@@ -5,6 +5,12 @@
   "description": "ask a computer if you are polite or not",
   "version": "1.0",
 
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["frust.js"]
+    }
+  ],
   "browser_action": {
     "default_icon": "frust-ribbon-19px.png",
     "default_popup": "popup.html"

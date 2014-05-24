@@ -1,6 +1,6 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// frustrometer chrome plugin.
+// Copyright (c) 2014 Chris McKenzie
+// See LICENSE file for licensing.
 
 /**
  * Global variable containing the query we'd like to pass to Flickr. In this
